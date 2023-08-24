@@ -5,20 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/css/scss/index.css" />
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap" />
-    <link rel="stylesheet" href="/node_modules/bootstrap/dist/js/bootstrap.min.js" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/bootstrap/dist/js/bootstrap.min.js"
+    />
     <title>Authentication</title>
   </head>
   <body>
     <header class="bg-secondary">
-      <nav class="navbar pb-0  d-flex flex-column flex-md-row justify-content-center align-items-md-end">
-         <a href="index.html" class="navbar-brand m-2 fs-1">MePlace</a>
-          <ul class="nav nav-tabs d-flex flex-row justify-content-around border-0">
-            <li class="nav-item mx-1"><a href="/feed/index.html" class="nav-link bg-navlinks text-dark p-2 py-1 fs-5">Feed</a></li>
-            <li class="nav-item mx-1"><a href="/profile/index.html" class="nav-link bg-navlinks text-dark p-2 py-1 fs-5">User</a></li>
-          </ul>
+      <nav
+        class="navbar pb-0 d-flex flex-column flex-md-row justify-content-center align-items-md-end"
+      >
+        <a href="index.html" class="navbar-brand m-2 fs-1">MePlace</a>
+        <ul
+          class="nav nav-tabs d-flex flex-row justify-content-around border-0"
+        >
+          <li class="nav-item mx-1">
+            <a
+              href="/feed/index.html"
+              class="nav-link bg-navlinks text-dark p-2 py-1 fs-5"
+              >Feed</a
+            >
+          </li>
+          <li class="nav-item mx-1">
+            <a
+              href="/profile/index.html"
+              class="nav-link bg-navlinks text-dark p-2 py-1 fs-5"
+              >User</a
+            >
+          </li>
+        </ul>
       </nav>
     </header>
-    <main style="height: 80vh;" class="bg-primary"></main>
-    <footer class="bg-secondary d-flex m-0"><div class="p-3">&copy Mathias Gauslå</div></footer>
+    <main style="height: 80vh" class="bg-primary">
+      <section>
+      <h1>Welcome to MePlace,get ready to explore the world</h1>
+    </section>
+    <section>
+      <h2>Login</h2>
+      <form action="/feed/index.html">
+        <div>
+        <input type="text" id="email"required>
+        <label for="email">Email</label>
+      </div>
+      <div>
+        <input type="text" id="password" required minlength="8">
+        <label for="password">Password</label>
+      </div>
+      <input type="submit" value="Login" >
+      </form>
+    </section>
+    </main>
+    <footer class="bg-secondary d-flex m-0">
+      <div class="p-3">&copy Mathias Gauslå</div>
+    </footer>
   </body>
 </html>
