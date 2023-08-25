@@ -2,7 +2,12 @@ $secondary: #ED8042;
 $primary: #A2FFFD;
 $themes: (
     "navlinks": #e9a174,
+    "btn":#37ED83,
+    "purpleH":rgb(155, 43, 155),
 );
+#form{
+    max-width: 700px;
+}
 @import "../../../node_modules/bootstrap/scss/_functions";
 @import "../../../node_modules/bootstrap/scss/_variables";
 $theme-colors: map-merge($theme-colors, $themes);
