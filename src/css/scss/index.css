@@ -3,6 +3,10 @@
   max-width: 700px;
 }
 
+.profilePic {
+  max-width: 60vw;
+}
+
 /*!
  * Bootstrap  v5.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2023 The Bootstrap Authors

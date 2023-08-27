@@ -8,6 +8,9 @@ $themes: (
 #form{
     max-width: 700px;
 }
+.profilePic{
+    max-width: 60vw
+}
 @import "../../../node_modules/bootstrap/scss/_functions";
 @import "../../../node_modules/bootstrap/scss/_variables";
 $theme-colors: map-merge($theme-colors, $themes);

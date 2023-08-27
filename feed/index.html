@@ -5,20 +5,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/css/scss/index.css" />
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap" />
-    <link rel="stylesheet" href="/node_modules/bootstrap/dist/js/bootstrap.min.js" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/bootstrap/dist/js/bootstrap.min.js"
+    />
     <title>Feed</title>
   </head>
   <body>
     <header class="bg-secondary">
-      <nav class="navbar pb-0  d-flex flex-column flex-md-row justify-content-center align-items-md-end">
-         <a href="/index.html" class="navbar-brand m-2 fs-1">MePlace</a>
-          <ul class="nav nav-tabs d-flex flex-row justify-content-around border-0">
-            <li class="nav-item mx-1"><a href="/feed/index.html" class="nav-link bg-navlinks text-dark p-2 py-1 fs-5">Feed</a></li>
-            <li class="nav-item mx-1"><a href="/profile/index.html" class="nav-link bg-navlinks text-dark p-2 py-1 fs-5">User</a></li>
-          </ul>
+      <nav
+        class="navbar pb-0 d-flex flex-column flex-md-row justify-content-center align-items-md-end"
+      >
+        <a href="/index.html" class="navbar-brand m-2 fs-1">MePlace</a>
+        <ul
+          class="nav nav-tabs d-flex flex-row justify-content-around border-0"
+        >
+          <li class="nav-item mx-1">
+            <a
+              href="/feed/index.html"
+              class="nav-link bg-navlinks text-dark p-2 py-1 fs-5"
+              >Feed</a
+            >
+          </li>
+          <li class="nav-item mx-1">
+            <a
+              href="/profile/index.html"
+              class="nav-link bg-navlinks text-dark p-2 py-1 fs-5"
+              >User</a
+            >
+          </li>
+        </ul>
       </nav>
     </header>
-    <main style="height: 80vh;" class="bg-primary"></main>
-    <footer class="bg-secondary d-flex m-0"><div class="p-3">&copy Mathias Gauslå</div></footer>
+    <main class="bg-primary">
+      <section>
+        <div>
+          <input type="text" id="search" />
+          <label for="search">Search</label>
+        </div>
+        <div>
+          <select name="sort" id="sort">
+            <option value="newest">Newest First</option>
+            <option value="Oldest">Oldest First</option>
+            <option value="pop">Most viewed</option>
+          </select>
+        </div>
+      </section>
+      <section>
+        <textarea
+          name="post"
+          id="post"
+          cols="30"
+          rows="10"
+          placeholder="what are you thinking about?"
+        ></textarea>
+        <input type="submit" value="Post" />
+      </section>
+      <section>
+        <div>
+          <h3>User 12222</h3>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta
+            dolore consectetur officia. Recusandae vel dolorum ex sed quam.
+            Alias totam quisquam nisi asperiores. Deleniti temporibus quod
+            dolorum sed ex dolor!
+          </p>
+        </div>
+        <div>
+          <h3>User 12222</h3>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta
+            dolore consectetur officia. Recusandae vel dolorum ex sed quam.
+            Alias totam quisquam nisi asperiores. Deleniti temporibus quod
+            dolorum sed ex dolor!
+          </p>
+        </div>
+        <div>
+          <h3>User 55523</h3>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta
+            dolore consectetur officia. Recusandae vel dolorum ex sed quam.
+            Alias totam quisquam nisi asperiores. Deleniti temporibus quod
+            dolorum sed ex dolor!
+          </p>
+        </div>
+        <div>
+          <h3>User 33233</h3>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta
+            dolore consectetur officia. Recusandae vel dolorum ex sed quam.
+            Alias totam quisquam nisi asperiores. Deleniti temporibus quod
+            dolorum sed ex dolor!
+          </p>
+        </div>
+        <div>
+          <h3>User 55523</h3>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta
+            dolore consectetur officia. Recusandae vel dolorum ex sed quam.
+            Alias totam quisquam nisi asperiores. Deleniti temporibus quod
+            dolorum sed ex dolor!
+          </p>
+        </div>
+        <div>
+          <h3>User 33233</h3>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta
+            dolore consectetur officia. Recusandae vel dolorum ex sed quam.
+            Alias totam quisquam nisi asperiores. Deleniti temporibus quod
+            dolorum sed ex dolor!
+          </p>
+        </div>
+      </section>
+    </main>
+    <footer class="bg-secondary d-flex m-0">
+      <div class="p-3">&copy Mathias Gauslå</div>
+    </footer>
   </body>
 </html>
