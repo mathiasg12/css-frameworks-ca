@@ -4,12 +4,14 @@ $themes: (
     "navlinks": #e9a174,
     "btn":#37ED83,
     "purpleH":rgb(155, 43, 155),
+    "followers": #FF9900 ,
+    "following": #CC00FF,
 );
 #form{
     max-width: 700px;
 }
-.profilePic{
-    max-width: 60vw
+.postC{
+    max-width: 240px
 }
 @import "../../../node_modules/bootstrap/scss/_functions";
 @import "../../../node_modules/bootstrap/scss/_variables";
