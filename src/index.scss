@@ -13,9 +13,9 @@ $themes: (
 .postC{
     max-width: 240px
 }
-@import "../../../node_modules/bootstrap/scss/_functions";
-@import "../../../node_modules/bootstrap/scss/_variables";
+@import "../node_modules/bootstrap/scss/_functions";
+@import "../node_modules/bootstrap/scss/_variables";
 $theme-colors: map-merge($theme-colors, $themes);
-@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
 
 
