@@ -45,7 +45,7 @@
           Welcome to MePlace,get ready to explore the world
         </h1>
       </section>
-        <form action="/profile/index.html" class="container bg-white bg-opacity-50 p-3 rounded-top rounded-bottom" id="form" >
+        <form action="#" class="container bg-white bg-opacity-50 p-3 rounded-top rounded-bottom" id="form" >
           <h3 class="text-center">Login</h3>
           <section class="row  justify-content-center">
             <div class="col-sm-6 col-md-4 col-lg-3  d-flex flex-column my-3">
@@ -58,14 +58,14 @@
             </div>
           </section>
           <div class="row justify-content-center">
-            <input type="submit" value="Login" class="col-4 col-md-3 col-lg-2 bg-btn rounded-pill border-0" />
+            <input type="submit" value="Login" id="login" class="col-4 col-md-3 col-lg-2 bg-btn rounded-pill border-0" />
           </div>
         </form>
       </section>
         <h2 class="text-center my-5">
           Don`t have an account with us?, sign up here
         </h2>
-        <form action="/profile/index.html" class="container bg-white bg-opacity-50 p-3 rounded-top rounded-bottom" id="form">
+        <form action="#" class="container bg-white bg-opacity-50 p-3 rounded-top rounded-bottom" id="formSignup">
           <h3 class="text-center">Sign up</h3>
           <section class="row justify-content-center">
             <div class="col-sm-6 col-md-4 col-lg-3 d-flex flex-column my-3">
@@ -73,28 +73,30 @@
               <input type="text" id="name" required />
             </div>
             <div class="col-sm-6 col-md-4 col-lg-3 d-flex flex-column my-3">
-              <label for="email" class="text-center">Email</label>
-              <input type="text" id="email" required />
+              <label for="emailSignup" class="text-center">Email</label>
+              <input type="text" id="emailSignup" required />
             </div>
             </section>
             <section class="row justify-content-center">
             <div class="col-sm-6 col-md-4 col-lg-3 d-flex flex-column my-3">
-              <label for="password" class="text-center">Password</label>
-              <input type="password" id="password" required minlength="8" />
+              <label for="passwordSignup" class="text-center">Password</label>
+              <input type="password" id="passwordSignup" required minlength="8" />
             </div>
             <div class="col-sm-6 col-md-4 col-lg-3 d-flex flex-column my-3">
-              <label for="Rpassword" class="text-center">Repeat Password</label>
-              <input type="password" id="Rpassword" required minlength="8" />
+              <label for="RpasswordSignup" class="text-center">Repeat Password</label>
+              <input type="password" id="RepasswordSignup" required minlength="8" />
             </div>
           </section>
           <div class="row justify-content-center">
-            <input type="submit" value="Sign-up" class="col-4 col-md-3 col-lg-2 bg-btn rounded-pill border-0" />
+            <input type="submit" value="Sign-up" id="signUp" class="col-4 col-md-3 col-lg-2 bg-btn rounded-pill border-0" />
           </div>
         </form>
       </section>
     </main>
     <footer class="bg-secondary d-flex m-0">
       <div class="p-3">&copy Mathias Gauslå</div>
+      <script src="JS/index.js" type="module"></script>
+      <script src="JS/functions.js" type="module"></script>
     </footer>
   </body>
 </html>
