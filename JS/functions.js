@@ -48,6 +48,12 @@ async function loginUser(url, email, password) {
     console.log(error);
   }
 }
+/**
+ * GET request to the api that gets posts using the accesstoken stored in local storage
+ * @param {string} url 
+ * @example
+ * getPosts(example/api/posts)
+ */
 async function getPosts(url) {
   try {
     let accessToken = localStorage.getItem("Token");
