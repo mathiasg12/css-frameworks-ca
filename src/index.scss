@@ -13,6 +13,9 @@ $themes: (
 .postC{
     max-width: 240px
 }
+.cards{
+    max-width: 600px !important;
+}
 @import "../node_modules/bootstrap/scss/_functions";
 @import "../node_modules/bootstrap/scss/_variables";
 $theme-colors: map-merge($theme-colors, $themes);

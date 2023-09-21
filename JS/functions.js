@@ -1,4 +1,4 @@
-export { registerUser, createUser, loginUser,getPosts};
+export { registerUser, createUser, loginUser, getPosts, createFeedContent, search };
 /**
  * Register a user to the api
  * @param {string} url
@@ -43,21 +43,21 @@ async function loginUser(url, email, password) {
     let response = await fetch(url, login);
     let responseJson = await response.json();
     console.log(responseJson);
-    if(responseJson.accessToken != undefined){
-    localStorage.setItem("Token", responseJson.accessToken);
-    location.replace("feed/index.html")
-  }
+    if (responseJson.accessToken != undefined) {
+      localStorage.setItem("Token", responseJson.accessToken);
+      location.replace("feed/index.html");
+    }
   } catch (error) {
     console.log(error);
   }
 }
 /**
  * GET request to the api that gets posts using the accesstoken stored in local storage
- * @param {string} url 
+ * @param {string} url
  * @example
  * getPosts(example/api/posts)
  */
-async function getPosts(url,section) {
+async function getPosts(url) {
   try {
     let accessToken = localStorage.getItem("Token");
     let posts = {
@@ -67,10 +67,10 @@ async function getPosts(url,section) {
         authorization: `Bearer ${accessToken}`,
       },
     };
-    let response= await fetch(url,posts);
-    let responseJson= await response.json();
-    responseJson.forEach((object)=>{createFeedContent(object,section)})
+    let response = await fetch(url, posts);
+    let responseJson = await response.json();
     console.log(responseJson);
+    return responseJson;
   } catch (error) {
     console.log(error);
   }
@@ -91,17 +91,43 @@ function createUser(name, email, password) {
     password: password,
   };
 }
-function createFeedContent(object, section){
-  let {title, body, created}= object;
-  let div= document.createElement("div");
-  let h3= document.createElement("h3");
-  let h4= document.createElement("h4");
-  let p= document.createElement("p");
-  h3.innerText= title;
-  h4.innerText= created;
-  p.innerText= body;
+/**
+ * function that creates html based on the object used as parameter 1, appends this html to a html element depending on paramter 2
+ * @param {object} object 
+ * @param {variable} section html element
+ */
+function createFeedContent(object, section) {
+  let { title, body, created } = object;
+  let div = document.createElement("div");
+  let h3 = document.createElement("h3");
+  let h4 = document.createElement("h4");
+  let p = document.createElement("p");
+  h3.innerText = title;
+  h4.innerText = created;
+  p.innerText = body;
   div.append(h3);
   div.append(h4);
   div.append(p);
+  div.classList.add("card")
+  div.classList.add("m-3")
+  div.classList.add("p-2")
+  div.classList.add("cards")
   section.append(div);
-};
+}
+/**
+ * function that filter thru an array and makes a new array based on what is search on
+ * @param {array} array 
+ * @param {variable} searchbar html input
+ * @param {variable} section  html elementent
+ */
+function search(array, searchbar,section) {
+  let searchValue = searchbar.value.toLowerCase().trim();
+  let searchResult = array.filter((search) => {
+    if (search.title.toLowerCase().includes(searchValue)) {
+      return true;
+    }
+  });
+  searchResult.forEach(object => {
+    createFeedContent(object, section)
+  });
+}
