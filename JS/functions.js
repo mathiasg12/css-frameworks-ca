@@ -1,4 +1,4 @@
-export { registerUser, createUser, loginUser,getPosts };
+export { registerUser, createUser, loginUser,getPosts};
 /**
  * Register a user to the api
  * @param {string} url
@@ -43,7 +43,10 @@ async function loginUser(url, email, password) {
     let response = await fetch(url, login);
     let responseJson = await response.json();
     console.log(responseJson);
+    if(responseJson.accessToken != undefined){
     localStorage.setItem("Token", responseJson.accessToken);
+    location.replace("feed/index.html")
+  }
   } catch (error) {
     console.log(error);
   }
@@ -54,7 +57,7 @@ async function loginUser(url, email, password) {
  * @example
  * getPosts(example/api/posts)
  */
-async function getPosts(url) {
+async function getPosts(url,section) {
   try {
     let accessToken = localStorage.getItem("Token");
     let posts = {
@@ -66,6 +69,7 @@ async function getPosts(url) {
     };
     let response= await fetch(url,posts);
     let responseJson= await response.json();
+    responseJson.forEach((object)=>{createFeedContent(object,section)})
     console.log(responseJson);
   } catch (error) {
     console.log(error);
@@ -87,3 +91,17 @@ function createUser(name, email, password) {
     password: password,
   };
 }
+function createFeedContent(object, section){
+  let {title, body, created}= object;
+  let div= document.createElement("div");
+  let h3= document.createElement("h3");
+  let h4= document.createElement("h4");
+  let p= document.createElement("p");
+  h3.innerText= title;
+  h4.innerText= created;
+  p.innerText= body;
+  div.append(h3);
+  div.append(h4);
+  div.append(p);
+  section.append(div);
+};

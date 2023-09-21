@@ -1,3 +1,4 @@
 import { getPosts } from "././functions.js";
 import { POSTS_URL } from "././variables.js";
-getPosts(POSTS_URL);
+const feedSection= document.getElementById("feed")
+getPosts(POSTS_URL, feedSection);
