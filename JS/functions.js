@@ -1,4 +1,13 @@
-export { registerUser, createUser, loginUser, getPosts, createFeedContent, search };
+export {
+  registerUser,
+  createUser,
+  loginUser,
+  getPosts,
+  createFeedContent,
+  search,
+  sendPost,
+  createPost,
+};
 /**
  * Register a user to the api
  * @param {string} url
@@ -76,6 +85,29 @@ async function getPosts(url) {
   }
 }
 /**
+ *  function that sends a post(object) to the api
+ * @param {string} url 
+ * @param {object} object 
+ */
+async function sendPost(url, object) {
+  try {
+    let accessToken = localStorage.getItem("Token");
+    let sendTo = {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(object),
+    };
+    let response = await fetch(url, sendTo);
+    location.reload()
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+}
+/**
  * function that creates an object
  * @param {string} name
  * @param {string} email
@@ -92,8 +124,20 @@ function createUser(name, email, password) {
   };
 }
 /**
+ * function that creates a object
+ * @param {string} title 
+ * @param {string} body 
+ * @returns 
+ */
+function createPost(title, body) {
+  return {
+    title: title,
+    body: body,
+  };
+}
+/**
  * function that creates html based on the object used as parameter 1, appends this html to a html element depending on paramter 2
- * @param {object} object 
+ * @param {object} object
  * @param {variable} section html element
  */
 function createFeedContent(object, section) {
@@ -108,26 +152,37 @@ function createFeedContent(object, section) {
   div.append(h3);
   div.append(h4);
   div.append(p);
-  div.classList.add("card")
-  div.classList.add("m-3")
-  div.classList.add("p-2")
-  div.classList.add("cards")
+  div.classList.add("card");
+  div.classList.add("m-3");
+  div.classList.add("p-2");
+  div.classList.add("cards");
+  div.classList.add("shadow");
+  div.classList.add("col-10");
   section.append(div);
 }
 /**
  * function that filter thru an array and makes a new array based on what is search on
- * @param {array} array 
+ * @param {array} array
  * @param {variable} searchbar html input
  * @param {variable} section  html elementent
  */
-function search(array, searchbar,section) {
+function search(array, searchbar, section) {
   let searchValue = searchbar.value.toLowerCase().trim();
   let searchResult = array.filter((search) => {
     if (search.title.toLowerCase().includes(searchValue)) {
       return true;
     }
   });
-  searchResult.forEach(object => {
-    createFeedContent(object, section)
-  });
+  if (searchResult.length >= 1) {
+    searchResult.forEach((object) => {
+      createFeedContent(object, section);
+    });
+  } else {
+    let div = document.createElement("div");
+    let h1 = document.createElement("h1");
+    h1.innerText = "Sorry no results";
+    div.append(h1);
+    div.classList.add("text-center");
+    section.append(div);
+  }
 }

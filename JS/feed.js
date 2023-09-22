@@ -1,8 +1,11 @@
-import { getPosts, createFeedContent, search } from "././functions.js";
+import { getPosts, createFeedContent, search,createPost,sendPost } from "././functions.js";
 import { POSTS_URL,POSTS_URL_ASC } from "././variables.js";
 const feedSection = document.getElementById("feed");
 const searchbar = document.getElementById("search");
 const filter= document.getElementById("filter")
+const title = document.getElementById("titlePost");
+const body= document.getElementById("post")
+const postBTN= document.getElementById("postBtn")
 async function displayPosts(url) {
   let arrayOfPosts = await getPosts(url);
   arrayOfPosts.forEach((object) => {
@@ -26,4 +29,10 @@ filter.addEventListener("change",()=>{
     else{
         location.reload()
     }
+});
+postBTN.addEventListener("click",(clickEvent)=>{
+  clickEvent.preventDefault();
+if(body.value.length >= 1 && title.value.length >= 1){
+  sendPost(POSTS_URL,createPost(title.value.trim(), body.value.trim()));
+}
 });
