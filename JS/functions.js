@@ -8,6 +8,7 @@ export {
   sendPost,
   createPost,
   createOneItem,
+  createUserPost,
 };
 /**
  * Register a user to the api
@@ -55,6 +56,7 @@ async function loginUser(url, email, password) {
     console.log(responseJson);
     if (responseJson.accessToken != undefined) {
       localStorage.setItem("Token", responseJson.accessToken);
+      localStorage.setItem("name",responseJson.name )
       location.replace("feed/index.html");
     }
   } catch (error) {
@@ -182,6 +184,42 @@ function createOneItem(object, section){
   div.append(h2);
   div.append(h3);
   div.append(p);
+  div.classList.add("p-2");
+  div.classList.add("card");
+  div.classList.add("my-4");
+  div.classList.add("cards");
+  div.classList.add("shadow");
+  div.classList.add("col-10");
+  section.append(div);
+}
+/**
+ * function that creates HTML for users own posts, this allows them to update or delete them.
+ * @param {object} object 
+ * @param {variable} section 
+ */
+function createUserPost(object, section){
+  let { title, body, created } = object;
+  let div = document.createElement("div");
+  let h2 = document.createElement("h2");
+  let h3 = document.createElement("h3");
+  let p = document.createElement("p");
+  let deletebtn = document.createElement("button");
+  let editbtn = document.createElement("button");
+  editbtn.innerText="Edit";
+  deletebtn.innerText="Delete";
+  h2.innerText = title;
+  h3.innerText = created;
+  p.innerText = body;
+  div.append(deletebtn);
+  div.append(editbtn);
+  div.append(h2);
+  div.append(h3);
+  div.append(p);
+  deletebtn.classList.add("my-3")
+  deletebtn.classList.add("bg-danger")
+  editbtn.classList.add("bg-following")
+  editbtn.classList.add("bg-opacity-50")
+  deletebtn.classList.add("bg-opacity-70")
   div.classList.add("p-2");
   div.classList.add("card");
   div.classList.add("my-4");
