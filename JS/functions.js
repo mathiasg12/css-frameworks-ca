@@ -7,6 +7,7 @@ export {
   search,
   sendPost,
   createPost,
+  createOneItem,
 };
 /**
  * Register a user to the api
@@ -142,6 +143,7 @@ function createPost(title, body) {
  */
 function createFeedContent(object, section) {
   let { title, body, created } = object;
+  let a= document.createElement("a")
   let div = document.createElement("div");
   let h3 = document.createElement("h3");
   let h4 = document.createElement("h4");
@@ -149,12 +151,40 @@ function createFeedContent(object, section) {
   h3.innerText = title;
   h4.innerText = created;
   p.innerText = body;
+  a.append(div)
+  a.href= `../specific/index.html?id=${object.id}`
   div.append(h3);
   div.append(h4);
   div.append(p);
-  div.classList.add("card");
-  div.classList.add("m-3");
   div.classList.add("p-2");
+  a.classList.add("card");
+  a.classList.add("m-3");
+  a.classList.add("text-decoration-none");
+  a.classList.add("cards");
+  a.classList.add("shadow");
+  a.classList.add("col-10");
+  section.append(a);
+}
+/**
+ * function that creates html based on one singular object
+ * @param {object} object 
+ * @param {variable} section 
+ */
+function createOneItem(object, section){
+  let { title, body, created } = object;
+  let div = document.createElement("div");
+  let h2 = document.createElement("h2");
+  let h3 = document.createElement("h3");
+  let p = document.createElement("p");
+  h2.innerText = title;
+  h3.innerText = created;
+  p.innerText = body;
+  div.append(h2);
+  div.append(h3);
+  div.append(p);
+  div.classList.add("p-2");
+  div.classList.add("card");
+  div.classList.add("my-4");
   div.classList.add("cards");
   div.classList.add("shadow");
   div.classList.add("col-10");
