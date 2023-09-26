@@ -1,4 +1,4 @@
-export {REGISTER_URL, LOGIN_URL, POSTS_URL,POSTS_URL_ASC, userName,USER_POSTS_URL};
+export {REGISTER_URL, LOGIN_URL, POSTS_URL,POSTS_URL_ASC, userName,USER_POSTS_URL,URL};
 const URL= "https://api.noroff.dev";
 const userName= localStorage.getItem("name");
 const REGISTER_ENDPOINT= "/api/v1/social/auth/register";
