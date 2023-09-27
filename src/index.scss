@@ -8,7 +8,10 @@ $themes: (
     "following": #CC00FF,
 );
 #form,#formSignup{
-    max-width: 500px;
+    max-width: 600px;
+}
+#form input, #formSignup input{
+    width: 180px;
 }
 .postC{
     max-width: 240px

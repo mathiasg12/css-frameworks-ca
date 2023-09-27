@@ -12,15 +12,22 @@ export {
   deletePost,
   updatePost,
   createEditForm,
+  emailValidation,
+  validateLength,
+  passwordsAreEquel,
 };
 /**
  * Register a user to the api
  * @param {string} url
+ * @param {string} login url
  * @param {object} user
+ * @param {variable} email
+ * @param {variable} password
+ * @param {variable} h3
  * @example
- * registerUser("example.api", {name:example, password:abc1234, email: example@noroff.no,})
+ * registerUser("example.api/register","example.api/login", {name:example, password:abc1234, email: example@noroff.no,},username,email,h3)
  */
-async function registerUser(url, user) {
+async function registerUser(url, urlLogin, user, email, password, h3) {
   try {
     const makeUser = {
       method: "POST",
@@ -33,6 +40,14 @@ async function registerUser(url, user) {
     console.log(response);
     let responseJson = await response.json();
     console.log(responseJson);
+    if (response.status !== 400) {
+      h3.innerText = "Sign up";
+      h3.classList.remove("text-danger");
+      await loginUser(urlLogin, email, password);
+    } else {
+      h3.innerText = responseJson.errors[0].message;
+      h3.classList.add("text-danger");
+    }
   } catch (error) {
     console.log(error);
   }
@@ -40,12 +55,13 @@ async function registerUser(url, user) {
 /**
  * function that gets login information and stores the access token to local storage
  * @param {string} url
- * @param {string} email
- * @param {string} password
+ * @param {variable} email
+ * @param {variable} password
+ * @param {variable} h3
  * @example
- * loginUser(exapleUrl/api/login, emailInput.value.trim(), passwordInput.value.trim());
+ * loginUser(exapleUrl/api/login, emailInput.value.trim(), passwordInput.value.trim(),h3);
  */
-async function loginUser(url, email, password) {
+async function loginUser(url, email, password,h3) {
   try {
     let login = {
       method: "POST",
@@ -57,10 +73,17 @@ async function loginUser(url, email, password) {
     let response = await fetch(url, login);
     let responseJson = await response.json();
     console.log(responseJson);
-    if (responseJson.accessToken != undefined) {
-      localStorage.setItem("Token", responseJson.accessToken);
-      localStorage.setItem("name", responseJson.name);
-      location.replace("feed/index.html");
+    if (response.status !== 401) {
+      if (responseJson.accessToken != undefined) {
+        h3.innerText = "Login";
+        h3.classList.remove("text-danger");
+        localStorage.setItem("Token", responseJson.accessToken);
+        localStorage.setItem("name", responseJson.name);
+        location.replace("feed/index.html");
+      }
+    } else {
+      h3.innerText = responseJson.errors[0].message;
+      h3.classList.add("text-danger");
     }
   } catch (error) {
     console.log(error);
@@ -306,10 +329,10 @@ function search(array, searchbar, section) {
 }
 /**
  * function that creates an edit form.
- * @param {variable} section 
- * @param {number} id 
+ * @param {variable} section
+ * @param {number} id
  */
-function createEditForm(section,id) {
+function createEditForm(section, id) {
   let form = document.createElement("form");
   let title = document.createElement("textarea");
   let bodyText = document.createElement("textarea");
@@ -339,7 +362,7 @@ function createEditForm(section,id) {
   updatePost.classList.add("m-2");
   updatePost.classList.add("update");
   updatePost.setAttribute("value", "Update");
-  updatePost.dataset.updateid= id; 
+  updatePost.dataset.updateid = id;
   updatePost.style.width = "120px";
   section.classList.add("bg-transparent");
   section.classList.remove("shadow");
@@ -349,4 +372,79 @@ function createEditForm(section,id) {
   form.append(bodyText);
   form.append(updatePost);
   section.append(form);
+}
+/**
+ * function that checks if a input have the required length,
+ * if so it returns true, else it adds styles, tells the user the required length and returns false
+ * @param {string} type 
+ * @param {variable} input 
+ * @param {variable} label 
+ * @param {number} length 
+ * @returns {boolean}
+ */
+function validateLength(type, input, label, length) {
+  let inputValue = input.value;
+  if (inputValue.length < length) {
+    label.innerText = `${type} needs to be a at least ${length} characters long`;
+    label.classList.add("text-danger");
+    input.classList.add("border-danger");
+    return false;
+  } else {
+    label.innerText = `${type}`;
+    label.classList.remove("text-danger");
+    input.classList.remove("border-danger");
+    return true;
+  }
+}
+/**
+ * function that checks that the email got the correct format if so it returns true,
+ * else it will tell the user the correct format, add styles and return false.
+ * @param {variable} email 
+ * @param {variable} emailLabel 
+ * @returns {boolean}
+ */
+function emailValidation(email, emailLabel) {
+  let emailValue = email.value;
+  const regexNoroff = /\S+@noroff.no/;
+  const regexNoroffStud = /\S+@stud.noroff.no/;
+  if (
+    regexNoroff.test(emailValue) === true ||
+    regexNoroffStud.test(emailValue) === true
+  ) {
+    email.classList.remove("border-danger");
+    emailLabel.classList.remove("text-danger");
+    emailLabel.innerText = "Email";
+    return true;
+  } else {
+    email.classList.add("border-danger");
+    emailLabel.classList.add("text-danger");
+    emailLabel.innerText =
+      "Invalid email, email must be either @noroff.no or @stud.noroff.no";
+    return false;
+  }
+}
+/**
+ * function that checks if password and repeat password match, if so it returns true,
+ * else it will tell the user, add styles and return false
+ * @param {variable} pass 
+ * @param {variable} repeatPass 
+ * @param {variable} rePassLabel 
+ * @returns {boolean}
+ */
+function passwordsAreEquel(pass, repeatPass, rePassLabel) {
+  let value1 = pass.value;
+  let value2 = repeatPass.value;
+  if (value1 === value2) {
+    pass.classList.remove("border-danger");
+    repeatPass.classList.remove("border-danger");
+    rePassLabel.classList.remove("text-danger");
+    rePassLabel.innerText = "Repeat Password";
+    return true;
+  } else {
+    pass.classList.add("border-danger");
+    repeatPass.classList.add("border-danger");
+    rePassLabel.classList.add("text-danger");
+    rePassLabel.innerText = "Repeat Password must match password";
+    return false;
+  }
 }
