@@ -40,39 +40,66 @@
       </nav>
     </header>
     <main class="bg-primary">
-      <section class="p-5 d-flex flex-column flex-md-row align-items-center justify-content-center">
-        <div  class="p-2" >
-          <input type="text" id="search" placeholder="Search"class="rounded-pill px-2 py-1"/>
-          <label for="search" hidden>Search</label>
-        </div>
-        <div>
-          <select name="sort" id="filter" class="my-3 rounded-pill px-2 py-1" >
-            <option value="newest">Newest First</option>
-            <option value="oldest">Oldest First</option>
-          </select>
-        </div>
-      </section>
+      <section class="py-5">
       <form id="postForm"  action="#"  class="p-3 d-flex flex-column align-items-center">
-        <textarea name="title"class="rounded-top border-0 py-1 text-center col-12 col-sm-8 col-md-6 col-lg-4" id="titlePost" cols="40" rows="1" placeholder="Title" required></textarea>
+        <textarea name="title"class="rounded-top border-0 py-1 text-center col-12 col-sm-8 col-md-6" id="titlePost" cols="40" rows="1" placeholder="Title" required></textarea>
         <textarea
-        class="rounded-bottom border-0 py-4 text-center col-12 col-sm-8 col-md-6 col-lg-4"
+        class="rounded-bottom border-0 py-4 text-center col-12 col-sm-8 col-md-6"
           name="post"
           id="post"
           cols="40"
-          rows="5"
+          rows="6"
           placeholder="what are you thinking about?"
           required
         ></textarea>
         <input type="submit" value="Post" class="bg-btn m-3 rounded-pill border-0 col-4 postC" id="postBtn"/>
       </form>
-      <section class="container py-5">
+    </section>
+      <section class="pt-3 d-flex flex-column flex-md-row align-items-center align-items-md-start justify-content-center">
+        <div  class="p-2" >
+          <input type="text" id="search" placeholder="Search"class="rounded-pill px-2 py-1"/>
+          <label for="search" hidden>Search</label>
+        </div>
+        <div class="p-2">
+          <button class="rounded-pill bg-white px-4 py-1 formEl" id="filterBtn">Filter</button>
+        </div>
+        <div id="hiddenFilter" hidden>
+          <div class=" d-flex flex-column align-items-center bg-white p-2 border border-3">
+            <p>Sort by:</p>
+            <select name="sort" id="filter" class="mb-3 rounded-pill px-2 py-1 formEl" >
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+            </select>
+          </div>
+          <div class=" d-flex flex-column align-items-center bg-white p-2 border border-3">
+            <p>Results per page</p>
+            <div>
+            <input type="radio" name="perPage" class="perPage" value="30" checked>
+            <label for="30perPage">30</label>
+          </div>
+          <div>
+            <input type="radio" name="perPage"class="perPage" value="50">
+            <label for="50perPage">50</label>
+          </div>
+          <div>
+            <input type="radio" name="perPage"class="perPage" value="100">
+            <label for="100perPage">100</label>
+          </div>
+          <button class="bg-btn my-3 rounded-pill px-1" id="filterConfirme">Confirme</button>
+          </div>
+        </div>
+      </section>
+      <section class="container py-3">
       <section class="row justify-content-center" id="feed">
+      </section>
+      <section class="d-flex justify-content-center mx-4">
+        <button class="bg-following text-white px-5 my-3" id="moreBtn">More</button>
       </section>
     </section>
     </main>
     <footer class="bg-secondary d-flex m-0">
       <div class="p-3">&copy Mathias Gauslå</div>
-      <script src="/JS/feed.js" type="module"></script>
+      <script src="/JS/feed.mjs" type="module"></script>
     </footer>
   </body>
 </html>

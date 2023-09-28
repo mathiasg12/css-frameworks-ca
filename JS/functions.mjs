@@ -15,6 +15,7 @@ export {
   emailValidation,
   validateLength,
   passwordsAreEquel,
+  formatDates,
 };
 /**
  * Register a user to the api
@@ -61,7 +62,7 @@ async function registerUser(url, urlLogin, user, email, password, h3) {
  * @example
  * loginUser(exapleUrl/api/login, emailInput.value.trim(), passwordInput.value.trim(),h3);
  */
-async function loginUser(url, email, password,h3) {
+async function loginUser(url, email, password, h3) {
   try {
     let login = {
       method: "POST",
@@ -206,6 +207,18 @@ function createPost(title, body) {
     body: body,
   };
 }
+function formatDates(timeToFormat) {
+  let timeFormat = new Date(timeToFormat).toLocaleDateString("en-GB", {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour24: "true",
+  });
+  return timeFormat;
+}
+
 /**
  * function that creates html based on the object used as parameter 1, appends this html to a html element depending on paramter 2
  * @param {object} object
@@ -215,16 +228,16 @@ function createFeedContent(object, section) {
   let { title, body, created } = object;
   let a = document.createElement("a");
   let div = document.createElement("div");
+  let h2 = document.createElement("h2");
   let h3 = document.createElement("h3");
-  let h4 = document.createElement("h4");
   let p = document.createElement("p");
-  h3.innerText = title;
-  h4.innerText = created;
+  h2.innerText = title;
+  h3.innerText = formatDates(created);
   p.innerText = body;
   a.append(div);
   a.href = `../specific/index.html?id=${object.id}`;
+  div.append(h2);
   div.append(h3);
-  div.append(h4);
   div.append(p);
   div.classList.add("p-2");
   a.classList.add("card");
@@ -247,7 +260,7 @@ function createOneItem(object, section) {
   let h3 = document.createElement("h3");
   let p = document.createElement("p");
   h2.innerText = title;
-  h3.innerText = created;
+  h3.innerText = formatDates(created);
   p.innerText = body;
   div.append(h2);
   div.append(h3);
@@ -271,31 +284,40 @@ function createUserPost(object, section) {
   let h2 = document.createElement("h2");
   let h3 = document.createElement("h3");
   let p = document.createElement("p");
+  let divForbtn = document.createElement("div");
   let deletebtn = document.createElement("button");
   let editbtn = document.createElement("button");
   editbtn.innerText = "Edit";
   deletebtn.innerText = "Delete";
   h2.innerText = title;
-  h3.innerText = created;
+  h3.innerText = formatDates(created);
   p.innerText = body;
-  div.append(deletebtn);
-  div.append(editbtn);
   div.append(h2);
   div.append(h3);
   div.append(p);
+  divForbtn.append(editbtn);
+  divForbtn.append(deletebtn);
+  div.append(divForbtn)
   div.setAttribute("id", id);
   deletebtn.dataset.deleteid = id;
-  deletebtn.classList.add("my-3");
+  divForbtn.classList.add("mt-3");
+  divForbtn.classList.add("d-flex");
+  deletebtn.classList.add("mx-2")
   deletebtn.classList.add("bg-danger");
   deletebtn.classList.add("delete");
+  deletebtn.classList.add("btnCard")
   editbtn.dataset.editid = id;
   editbtn.classList.add("bg-following");
   editbtn.classList.add("edit");
   editbtn.classList.add("bg-opacity-50");
+  editbtn.classList.add("mx-2")
+  editbtn.classList.add("px-4")
+  editbtn.classList.add("btnCard")
   deletebtn.classList.add("bg-opacity-70");
   div.classList.add("p-2");
   div.classList.add("card");
   div.classList.add("my-4");
+  div.classList.add("mx-2");
   div.classList.add("cards");
   div.classList.add("shadow");
   div.classList.add("col-10");
@@ -376,10 +398,10 @@ function createEditForm(section, id) {
 /**
  * function that checks if a input have the required length,
  * if so it returns true, else it adds styles, tells the user the required length and returns false
- * @param {string} type 
- * @param {variable} input 
- * @param {variable} label 
- * @param {number} length 
+ * @param {string} type
+ * @param {variable} input
+ * @param {variable} label
+ * @param {number} length
  * @returns {boolean}
  */
 function validateLength(type, input, label, length) {
@@ -399,8 +421,8 @@ function validateLength(type, input, label, length) {
 /**
  * function that checks that the email got the correct format if so it returns true,
  * else it will tell the user the correct format, add styles and return false.
- * @param {variable} email 
- * @param {variable} emailLabel 
+ * @param {variable} email
+ * @param {variable} emailLabel
  * @returns {boolean}
  */
 function emailValidation(email, emailLabel) {
@@ -426,9 +448,9 @@ function emailValidation(email, emailLabel) {
 /**
  * function that checks if password and repeat password match, if so it returns true,
  * else it will tell the user, add styles and return false
- * @param {variable} pass 
- * @param {variable} repeatPass 
- * @param {variable} rePassLabel 
+ * @param {variable} pass
+ * @param {variable} repeatPass
+ * @param {variable} rePassLabel
  * @returns {boolean}
  */
 function passwordsAreEquel(pass, repeatPass, rePassLabel) {

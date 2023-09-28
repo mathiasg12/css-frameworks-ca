@@ -1,4 +1,4 @@
-import { REGISTER_URL, LOGIN_URL } from "././variables.js";
+import { REGISTER_URL, LOGIN_URL } from "./variables.mjs";
 import {
   registerUser,
   createUser,
@@ -6,7 +6,7 @@ import {
   emailValidation,
   validateLength,
   passwordsAreEquel,
-} from "././functions.js";
+} from "././functions.mjs";
 const signUpH3 = document.getElementById("signUpH3");
 const loginH3 = document.getElementById("loginH3");
 const registerEmail = document.getElementById("emailSignup");

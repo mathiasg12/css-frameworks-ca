@@ -7,6 +7,8 @@ $themes: (
     "followers": #FF9900 ,
     "following": #CC00FF,
 );
+$h3-font-size: 1.25rem;
+$font-size-base:1.2rem;
 #form,#formSignup{
     max-width: 600px;
 }
@@ -21,6 +23,12 @@ $themes: (
 }
 main{
     min-height: 90vh;
+}
+.formEl{
+    width: 130px;
+}
+btnCard{
+    min-width: 85px
 }
 @import "../node_modules/bootstrap/scss/_functions";
 @import "../node_modules/bootstrap/scss/_variables";

@@ -1,4 +1,4 @@
-import { USER_POSTS_URL, userName, POSTS_URL } from "././variables.js";
+import { USER_POSTS_URL, userName, POSTS_URL } from "././variables.mjs";
 import {
   getPosts,
   createUserPost,
@@ -6,7 +6,7 @@ import {
   createPost,
   updatePost,
   createEditForm,
-} from "././functions.js";
+} from "././functions.mjs";
 const sectionForposts = document.getElementById("postSection");
 const h1 = document.querySelector("h1");
 h1.innerText = userName;
