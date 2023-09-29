@@ -369,6 +369,7 @@ function createEditForm(section, id) {
   title.classList.add("rounded-top");
   title.classList.add("border-2");
   title.classList.add("py-1");
+  title.classList.add("col-12");
   title.classList.add("text-center");
   title.setAttribute("cols", 40);
   title.setAttribute("rows", 1);
@@ -377,6 +378,7 @@ function createEditForm(section, id) {
   bodyText.classList.add("rounded-bottom");
   bodyText.classList.add("border-2");
   bodyText.classList.add("py-1");
+  bodyText.classList.add("col-12");
   bodyText.classList.add("text-center");
   bodyText.setAttribute("cols", 40);
   bodyText.setAttribute("rows", 5);

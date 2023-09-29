@@ -14,41 +14,22 @@
     <title>Authentication</title>
   </head>
   <body>
-    <header class="bg-secondary">
-      <nav
-        class="navbar pb-0 d-flex flex-column flex-md-row justify-content-center align-items-md-end"
-      >
-        <a href="index.html" class="navbar-brand m-2 fs-1">MePlace</a>
-        <ul
-          class="nav nav-tabs d-flex flex-row justify-content-around border-0"
-        >
-          <li class="nav-item mx-1">
-            <a
-              href="/feed/index.html"
-              class="nav-link bg-navlinks text-dark p-2 py-1 fs-5"
-              >Feed</a
-            >
-          </li>
-          <li class="nav-item mx-1">
-            <a
-              href="/profile/index.html"
-              class="nav-link bg-navlinks text-dark p-2 py-1 fs-5"
-              >User</a
-            >
-          </li>
-        </ul>
+    <header class="bg-secondary py-3">
+      <nav class="navbar pb-0 d-flex flex-column flex-md-row justify-content-center align-items-center ">
+        <h1>MePlace</h1>
       </nav>
     </header>
-    <main class="bg-primary p-5">
-      <section class="p-5">
+    <main class="p-5 mainLanding">
+      <section class="bg-white bg-opacity-75 py-5 rounded">
+      <section class="py-5 d-flex justify-content-center col-12">
         <h1 class="text-center text-purpleH">
-          Welcome to MePlace,get ready to explore the world
+          Welcome to MePlace,Get ready to explore the world
         </h1>
       </section>
-        <form action="#" class="container bg-white bg-opacity-50 p-3 rounded-top rounded-bottom" id="form" >
+        <form action="#" class="container p-3 my-5" id="form" >
           <h3 class="text-center" id="loginH3">Login</h3>
           <section class="row  justify-content-center align-items-end">
-            <div class="col-sm-6 col-md-4  d-flex flex-column my-3 align-items-center">
+            <div class="col-sm-6 col-md-4 d-flex flex-column my-3 align-items-center">
               <label for="email" class="text-center" id="loginEmailLabel">Email</label>
               <input type="text" id="email" class="" required />
             </div>
@@ -61,11 +42,10 @@
             <input type="submit" value="Login" id="login" class="col-4 col-md-3 col-lg-2 bg-btn rounded-pill border-0" />
           </div>
         </form>
-      </section>
         <h2 class="text-center my-5">
           Don`t have an account with us?, sign up here
         </h2>
-        <form action="#" class="container bg-white bg-opacity-50 p-3 rounded-top rounded-bottom" id="formSignup">
+        <form action="#" class="container p-4 my-2" id="formSignup">
           <h3 class="text-center" id="signUpH3">Sign up</h3>
           <section class="row justify-content-center align-items-end">
             <div class="col-sm-6 col-md-4 d-flex flex-column my-3 align-items-center">
@@ -92,6 +72,7 @@
           </div>
         </form>
       </section>
+    </section>
     </main>
     <footer class="bg-secondary d-flex m-0">
       <div class="p-3">&copy Mathias Gauslå</div>

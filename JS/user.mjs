@@ -8,8 +8,8 @@ import {
   createEditForm,
 } from "././functions.mjs";
 const sectionForposts = document.getElementById("postSection");
-const h1 = document.querySelector("h1");
-h1.innerText = userName;
+const h2 = document.querySelector("#name");
+h2.innerText = userName;
 async function displayUsersPosts(url) {
   let arrayOfPosts = await getPosts(url);
   arrayOfPosts.forEach((object) => {
