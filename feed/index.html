@@ -11,6 +11,7 @@
       rel="stylesheet"
       href="/node_modules/bootstrap/dist/js/bootstrap.min.js"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <title>Feed</title>
   </head>
   <body>
@@ -57,11 +58,14 @@
     </section>
       <section class="pt-3 d-flex flex-column flex-md-row align-items-center align-items-md-start justify-content-center">
         <div  class="p-2" >
-          <input type="text" id="search" placeholder="Search"class="rounded-pill px-2 py-1"/>
+          <div class="bg-white border border-black border-2 d-flex align-items-center">
+          <input type="text" id="search" placeholder="Search"class="border-0 py-1"/>
           <label for="search" hidden>Search</label>
+          <i class="fa-solid fa-magnifying-glass px-2"></i>
+        </div>
         </div>
         <div class="p-2">
-          <button class="rounded-pill bg-white px-4 py-1 formEl" id="filterBtn">Filter</button>
+          <button class="rounded-pill bg-white px-4 py-1 formEl border border-black border-2" id="filterBtn">Filter</button>
         </div>
         <div id="hiddenFilter" hidden>
           <div class=" d-flex flex-column align-items-center bg-white p-2 border border-3">
