@@ -36,6 +36,12 @@ btnCard {
     background-image: url(/img/bg.jpg);
     background-size: contain
 }
+#logOut{
+  cursor: pointer;
+}
+.usersImg{
+  max-width: 100px !important;
+}
 
 @import "../node_modules/bootstrap/scss/_functions";
 @import "../node_modules/bootstrap/scss/_variables";

@@ -24,7 +24,8 @@ const loginPasswordLabel = document.getElementById("loginPasswordLabel");
 const loginBtn = document.getElementById("login");
 const signUpForm= document.getElementById("formSignup");
 const loginForm= document.getElementById("form");
-registerBtn.addEventListener("click", () => {
+registerBtn.addEventListener("click", (click) => {
+  click.preventDefault();
   emailValidation(registerEmail, registerEmailLabel);
   validateLength("Password", registerpassword, registerpasswordLabel, 8);
   passwordsAreEquel(
@@ -70,7 +71,8 @@ registerBtn.addEventListener("click", () => {
     });
   }
 });
-loginBtn.addEventListener("click", () => {
+loginBtn.addEventListener("click", (click) => {
+  click.preventDefault();
   emailValidation(loginEmail, loginEmailLabel);
   validateLength("Password", loginPassword, loginPasswordLabel, 8);
   if (

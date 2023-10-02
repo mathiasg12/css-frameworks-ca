@@ -7,6 +7,7 @@ import {
   updatePost,
   createEditForm,
 } from "././functions.mjs";
+const logOut= document.getElementById("logOut");
 const sectionForposts = document.getElementById("postSection");
 const h2 = document.querySelector("#name");
 h2.innerText = userName;
@@ -73,3 +74,8 @@ sectionForposts.addEventListener("click", (click) => {
     }
   }
 });
+logOut.addEventListener("click",()=>{
+  localStorage.clear();
+  location.replace("../index.html");
+  })
+  

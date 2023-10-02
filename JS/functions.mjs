@@ -76,11 +76,17 @@ async function loginUser(url, email, password, h3) {
     console.log(responseJson);
     if (response.status !== 401) {
       if (responseJson.accessToken != undefined) {
+        if(h3 != undefined){
         h3.innerText = "Login";
         h3.classList.remove("text-danger");
         localStorage.setItem("Token", responseJson.accessToken);
         localStorage.setItem("name", responseJson.name);
         location.replace("feed/index.html");
+      }else{
+        localStorage.setItem("Token", responseJson.accessToken);
+        localStorage.setItem("name", responseJson.name);
+        location.replace("feed/index.html");
+      }
       }
     } else {
       h3.innerText = responseJson.errors[0].message;
@@ -228,17 +234,33 @@ function createFeedContent(object, section) {
   let { title, body, created } = object;
   let a = document.createElement("a");
   let div = document.createElement("div");
+  let imgAndDate= document.createElement("div")
+  let h2AndP= document.createElement("div")
   let h2 = document.createElement("h2");
   let h3 = document.createElement("h3");
   let p = document.createElement("p");
+  let img= document.createElement("img")
+  imgAndDate.classList.add("d-flex")
+  imgAndDate.classList.add("flex-wrap")
+  imgAndDate.classList.add("align-items-center")
+  h2AndP.classList.add("py-2")
+  h2AndP.classList.add("px-3")
+  img.src= `/img/users.jpg`
+  img.classList.add("img-thumbnail")
+  img.classList.add("usersImg")
+  img.classList.add("rounded-circle")
   h2.innerText = title;
   h3.innerText = formatDates(created);
+  h3.classList.add("px-3")
   p.innerText = body;
   a.append(div);
   a.href = `../specific/index.html?id=${object.id}`;
-  div.append(h2);
-  div.append(h3);
-  div.append(p);
+  imgAndDate.append(img)
+  imgAndDate.append(h3);
+  h2AndP.append(h2);
+  h2AndP.append(p);
+  div.append(imgAndDate);
+  div.append(h2AndP);
   div.classList.add("p-2");
   a.classList.add("card");
   a.classList.add("m-3");
@@ -255,23 +277,42 @@ function createFeedContent(object, section) {
  */
 function createOneItem(object, section) {
   let { title, body, created } = object;
+  let divContainer = document.createElement("div");
   let div = document.createElement("div");
+  let imgAndDate= document.createElement("div")
+  let h2AndP= document.createElement("div")
   let h2 = document.createElement("h2");
   let h3 = document.createElement("h3");
   let p = document.createElement("p");
+  let img= document.createElement("img")
+  imgAndDate.classList.add("d-flex")
+  imgAndDate.classList.add("flex-wrap")
+  imgAndDate.classList.add("align-items-center")
+  h2AndP.classList.add("py-2")
+  h2AndP.classList.add("px-3")
+  img.src= `/img/users.jpg`
+  img.classList.add("img-thumbnail")
+  img.classList.add("usersImg")
+  img.classList.add("rounded-circle")
   h2.innerText = title;
   h3.innerText = formatDates(created);
+  h3.classList.add("px-3")
   p.innerText = body;
-  div.append(h2);
-  div.append(h3);
-  div.append(p);
-  div.classList.add("p-2");
-  div.classList.add("card");
-  div.classList.add("my-4");
-  div.classList.add("cards");
-  div.classList.add("shadow");
-  div.classList.add("col-10");
-  section.append(div);
+  divContainer.append(div);
+  imgAndDate.append(img)
+  imgAndDate.append(h3);
+  h2AndP.append(h2);
+  h2AndP.append(p);
+  divContainer.append(imgAndDate);
+  divContainer.append(h2AndP);
+  divContainer.classList.add("p-2");
+  divContainer.classList.add("card");
+  divContainer.classList.add("m-3");
+  divContainer.classList.add("text-decoration-none");
+  divContainer.classList.add("cards");
+  divContainer.classList.add("shadow");
+  divContainer.classList.add("col-10");
+  section.append(divContainer);
 }
 /**
  * function that creates HTML for users own posts, this allows them to update or delete them.
