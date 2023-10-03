@@ -76,17 +76,17 @@ async function loginUser(url, email, password, h3) {
     console.log(responseJson);
     if (response.status !== 401) {
       if (responseJson.accessToken != undefined) {
-        if(h3 != undefined){
-        h3.innerText = "Login";
-        h3.classList.remove("text-danger");
-        localStorage.setItem("Token", responseJson.accessToken);
-        localStorage.setItem("name", responseJson.name);
-        location.replace("feed/index.html");
-      }else{
-        localStorage.setItem("Token", responseJson.accessToken);
-        localStorage.setItem("name", responseJson.name);
-        location.replace("feed/index.html");
-      }
+        if (h3 != undefined) {
+          h3.innerText = "Login";
+          h3.classList.remove("text-danger");
+          localStorage.setItem("Token", responseJson.accessToken);
+          localStorage.setItem("name", responseJson.name);
+          location.replace("feed/index.html");
+        } else {
+          localStorage.setItem("Token", responseJson.accessToken);
+          localStorage.setItem("name", responseJson.name);
+          location.replace("feed/index.html");
+        }
       }
     } else {
       h3.innerText = responseJson.errors[0].message;
@@ -231,32 +231,54 @@ function formatDates(timeToFormat) {
  * @param {variable} section html element
  */
 function createFeedContent(object, section) {
-  let { title, body, created } = object;
+  let { title, body, created,author } = object;
   let a = document.createElement("a");
   let div = document.createElement("div");
-  let imgAndDate= document.createElement("div")
-  let h2AndP= document.createElement("div")
+  let imgAndDate = document.createElement("div");
+  let ContainerForEmailNameDate = document.createElement("div");
+  let h2AndP = document.createElement("div");
   let h2 = document.createElement("h2");
   let h3 = document.createElement("h3");
   let p = document.createElement("p");
-  let img= document.createElement("img")
-  imgAndDate.classList.add("d-flex")
-  imgAndDate.classList.add("flex-wrap")
-  imgAndDate.classList.add("align-items-center")
-  h2AndP.classList.add("py-2")
-  h2AndP.classList.add("px-3")
-  img.src= `/img/users.jpg`
-  img.classList.add("img-thumbnail")
-  img.classList.add("usersImg")
-  img.classList.add("rounded-circle")
+  let img = document.createElement("img");
+  let name= document.createElement("p");
+  let email= document.createElement("p");
+  imgAndDate.classList.add("d-flex");
+  imgAndDate.classList.add("flex-wrap");
+  imgAndDate.classList.add("align-items-center");
+  imgAndDate.classList.add("justify-content-center");
+  imgAndDate.classList.add("justify-content-sm-start");
+  h2AndP.classList.add("py-3");
+  h2AndP.classList.add("px-2");
+  img.src = `/img/users.jpg`;
+  img.classList.add("img-thumbnail");
+  img.classList.add("usersImg");
+  img.classList.add("rounded-circle");
+  ContainerForEmailNameDate.classList.add("d-flex")
+  ContainerForEmailNameDate.classList.add("flex-column")
+  ContainerForEmailNameDate.classList.add("m-2")
+  ContainerForEmailNameDate.classList.add("col-12")
+  ContainerForEmailNameDate.classList.add("col-sm-6")
+  ContainerForEmailNameDate.classList.add("align-items-center");
+  ContainerForEmailNameDate.classList.add("align-items-sm-start")
+  name.classList.add("my-0")
+  h3.classList.add("my-1")
+  email.classList.add("m-0")
+  email.classList.add("mw-100")
+  name.classList.add("mw-100")
+  h3.classList.add("mw-100")
   h2.innerText = title;
   h3.innerText = formatDates(created);
-  h3.classList.add("px-3")
   p.innerText = body;
+  name.innerText= author.name;
+  email.innerText= author.email;
   a.append(div);
   a.href = `../specific/index.html?id=${object.id}`;
-  imgAndDate.append(img)
-  imgAndDate.append(h3);
+  imgAndDate.append(img);
+  imgAndDate.append(ContainerForEmailNameDate)
+  ContainerForEmailNameDate.append(name)
+  ContainerForEmailNameDate.append(email)
+  ContainerForEmailNameDate.append(h3);
   h2AndP.append(h2);
   h2AndP.append(p);
   div.append(imgAndDate);
@@ -276,33 +298,57 @@ function createFeedContent(object, section) {
  * @param {variable} section
  */
 function createOneItem(object, section) {
-  let { title, body, created } = object;
+  let { title, body, created,author } = object;
   let divContainer = document.createElement("div");
   let div = document.createElement("div");
-  let imgAndDate= document.createElement("div")
-  let h2AndP= document.createElement("div")
+  let imgAndDate = document.createElement("div");
+  let ContainerForEmailNameDate = document.createElement("div");
+  let h2AndP = document.createElement("div");
   let h2 = document.createElement("h2");
   let h3 = document.createElement("h3");
   let p = document.createElement("p");
-  let img= document.createElement("img")
-  imgAndDate.classList.add("d-flex")
-  imgAndDate.classList.add("flex-wrap")
-  imgAndDate.classList.add("align-items-center")
-  h2AndP.classList.add("py-2")
-  h2AndP.classList.add("px-3")
-  img.src= `/img/users.jpg`
-  img.classList.add("img-thumbnail")
-  img.classList.add("usersImg")
-  img.classList.add("rounded-circle")
+  let img = document.createElement("img");
+  let name= document.createElement("p");
+  let email= document.createElement("p");
+  imgAndDate.classList.add("d-flex");
+  imgAndDate.classList.add("flex-wrap");
+  imgAndDate.classList.add("align-items-center");
+  imgAndDate.classList.add("justify-content-center");
+  imgAndDate.classList.add("justify-content-sm-start");
+  h2AndP.classList.add("py-3");
+  h2AndP.classList.add("px-2");
+  img.src = `/img/users.jpg`;
+  img.classList.add("img-thumbnail");
+  img.classList.add("usersImg");
+  img.classList.add("rounded-circle");
+  ContainerForEmailNameDate.classList.add("d-flex")
+  ContainerForEmailNameDate.classList.add("flex-column")
+  ContainerForEmailNameDate.classList.add("m-2")
+  ContainerForEmailNameDate.classList.add("col-12")
+  ContainerForEmailNameDate.classList.add("col-sm-6")
+  ContainerForEmailNameDate.classList.add("align-items-center");
+  ContainerForEmailNameDate.classList.add("align-items-sm-start")
+  name.classList.add("my-0")
+  h3.classList.add("my-1")
+  email.classList.add("m-0")
+  email.classList.add("mw-100")
+  name.classList.add("mw-100")
+  h3.classList.add("mw-100")
   h2.innerText = title;
   h3.innerText = formatDates(created);
-  h3.classList.add("px-3")
   p.innerText = body;
-  divContainer.append(div);
-  imgAndDate.append(img)
-  imgAndDate.append(h3);
+  name.innerText= author.name;
+  email.innerText= author.email;
+  imgAndDate.append(img);
+  imgAndDate.append(ContainerForEmailNameDate)
+  ContainerForEmailNameDate.append(name)
+  ContainerForEmailNameDate.append(email)
+  ContainerForEmailNameDate.append(h3);
   h2AndP.append(h2);
   h2AndP.append(p);
+  div.append(imgAndDate);
+  div.append(h2AndP);
+  div.classList.add("p-2");
   divContainer.append(imgAndDate);
   divContainer.append(h2AndP);
   divContainer.classList.add("p-2");
@@ -338,22 +384,22 @@ function createUserPost(object, section) {
   div.append(p);
   divForbtn.append(editbtn);
   divForbtn.append(deletebtn);
-  div.append(divForbtn)
+  div.append(divForbtn);
   div.setAttribute("id", id);
   deletebtn.dataset.deleteid = id;
   divForbtn.classList.add("mt-3");
   divForbtn.classList.add("d-flex");
-  deletebtn.classList.add("mx-2")
+  deletebtn.classList.add("mx-2");
   deletebtn.classList.add("bg-danger");
   deletebtn.classList.add("delete");
-  deletebtn.classList.add("btnCard")
+  deletebtn.classList.add("btnCard");
   editbtn.dataset.editid = id;
   editbtn.classList.add("bg-following");
   editbtn.classList.add("edit");
   editbtn.classList.add("bg-opacity-50");
-  editbtn.classList.add("mx-2")
-  editbtn.classList.add("px-4")
-  editbtn.classList.add("btnCard")
+  editbtn.classList.add("mx-2");
+  editbtn.classList.add("px-4");
+  editbtn.classList.add("btnCard");
   deletebtn.classList.add("bg-opacity-70");
   div.classList.add("p-2");
   div.classList.add("card");
@@ -373,7 +419,8 @@ function createUserPost(object, section) {
 function search(array, searchbar, section) {
   let searchValue = searchbar.value.toLowerCase().trim();
   let searchResult = array.filter((search) => {
-    if (search.title.toLowerCase().includes(searchValue)) {
+    if (
+      search.title.toLowerCase().includes(searchValue)) {
       return true;
     }
   });

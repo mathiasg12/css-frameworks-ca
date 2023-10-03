@@ -1,5 +1,5 @@
 import { getPosts, createFeedContent, search,createPost,sendPost,} from "./functions.mjs";
-import { POSTS_URL} from "./variables.mjs";
+import { POSTS_URL,authorTrue} from "./variables.mjs";
 const feedSection = document.getElementById("feed");
 const searchbar = document.getElementById("search");
 const filter= document.getElementById("filter")
@@ -11,9 +11,11 @@ const filterMenu= document.getElementById("hiddenFilter")
 const filterConfirme= document.getElementById("filterConfirme")
 const filterPerPage= document.querySelectorAll(".perPage")
 const moreBtn= document.getElementById("moreBtn");
+const loader= document.getElementById("loading");
 let page=0;
 async function displayPosts(url) {
   let arrayOfPosts = await getPosts(url);
+  loader.classList.add("d-none")
   arrayOfPosts.forEach((object) => {
     createFeedContent(object, feedSection);
   });
@@ -26,7 +28,7 @@ async function displayPosts(url) {
     }
   });
 }
-displayPosts(POSTS_URL+`?limit=30`);
+displayPosts(POSTS_URL+authorTrue);
 postBTN.addEventListener("click",(clickEvent)=>{
   clickEvent.preventDefault();
 if(body.value.length >= 1 && title.value.length >= 1){
@@ -37,16 +39,17 @@ filterBtn.addEventListener("click",()=>{
  filterMenu.toggleAttribute("hidden")
 })
 filterConfirme.addEventListener("click",()=>{
+  loader.classList.remove("d-none")
   for(let i=0; i<filterPerPage.length; i++){
     if(filterPerPage[i].checked){
       let resultsPerpage= filterPerPage[i].value
       if(filter.value=== "newest"){
         feedSection.innerHTML=""
-        displayPosts(POSTS_URL+`?limit=${resultsPerpage}`);
+        displayPosts(POSTS_URL+`${authorTrue}&limit=${resultsPerpage}`);
       }
       else{
         feedSection.innerHTML=""
-        displayPosts(POSTS_URL+`?limit=${resultsPerpage}&&sortOrder=asc`)
+        displayPosts(POSTS_URL+`${authorTrue}&limit=${resultsPerpage}&&sortOrder=asc`)
       }
       }
   }
@@ -58,13 +61,14 @@ moreBtn.addEventListener("click",()=>{
     if(filterPerPage[i].checked){
       let resultsPerpage= filterPerPage[i].value
       if(filter.value=== "newest"){
-        displayPosts(POSTS_URL+`?limit=${resultsPerpage}&&offset=${resultsPerpage*page}`);
+        displayPosts(POSTS_URL+`${authorTrue}&limit=${resultsPerpage}&&offset=${resultsPerpage*page}`);
       }
       else{
-        displayPosts(POSTS_URL+`?limit=${resultsPerpage}&&offset=${resultsPerpage*page}&&sortOrder=asc`)
+        displayPosts(POSTS_URL+`${authorTrue}&limit=${resultsPerpage}&&offset=${resultsPerpage*page}&&sortOrder=asc`)
       }
       }
   }
 })
+
 
 

@@ -10,9 +10,11 @@ import {
 const logOut= document.getElementById("logOut");
 const sectionForposts = document.getElementById("postSection");
 const h2 = document.querySelector("#name");
+const loader= document.getElementById("loading");
 h2.innerText = userName;
 async function displayUsersPosts(url) {
   let arrayOfPosts = await getPosts(url);
+  loader.classList.add("d-none")
   arrayOfPosts.forEach((object) => {
     createUserPost(object, sectionForposts);
   });
