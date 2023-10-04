@@ -16,6 +16,7 @@ export {
   validateLength,
   passwordsAreEquel,
   formatDates,
+  getAllPostsInTheApi,
 };
 /**
  * Register a user to the api
@@ -114,8 +115,47 @@ async function getPosts(url) {
     };
     let response = await fetch(url, posts);
     let responseJson = await response.json();
-    console.log(responseJson);
     return responseJson;
+  } catch (error) {
+    console.log(error);
+  }
+}
+/**
+ * GET request to the api that gets posts using the accesstoken stored in local storage,
+ * and stores all posts in an array
+ * @param {string} url
+ * @returns array
+ */
+async function getAllPostsInTheApi(url) {
+  try {
+    let accessToken = localStorage.getItem("Token");
+    let posts = {
+      method: "GET",
+      headers: {
+        "content-type": "aplication/json",
+        authorization: `Bearer ${accessToken}`,
+      },
+    };
+    let offset = 100;
+    let arrayWithAllPosts = [];
+    let page = 1;
+    for (let i = 0; i < page; i++) {
+      page++;
+      let response = await fetch(
+        url + `?_author=true&offset=${offset * [i]}`,
+        posts
+      );
+      let responseJson = await response.json();
+      if (responseJson.length >= 1) {
+        arrayWithAllPosts.push(responseJson);
+      } else {
+        let flatArrayWithALlPosts = arrayWithAllPosts.flatMap((object) => {
+          return object;
+        });
+        console.log(flatArrayWithALlPosts);
+        return flatArrayWithALlPosts;
+      }
+    }
   } catch (error) {
     console.log(error);
   }
@@ -231,7 +271,7 @@ function formatDates(timeToFormat) {
  * @param {variable} section html element
  */
 function createFeedContent(object, section) {
-  let { title, body, created,author } = object;
+  let { title, body, created, author } = object;
   let a = document.createElement("a");
   let div = document.createElement("div");
   let imgAndDate = document.createElement("div");
@@ -241,8 +281,8 @@ function createFeedContent(object, section) {
   let h3 = document.createElement("h3");
   let p = document.createElement("p");
   let img = document.createElement("img");
-  let name= document.createElement("p");
-  let email= document.createElement("p");
+  let name = document.createElement("p");
+  let email = document.createElement("p");
   imgAndDate.classList.add("d-flex");
   imgAndDate.classList.add("flex-wrap");
   imgAndDate.classList.add("align-items-center");
@@ -254,30 +294,30 @@ function createFeedContent(object, section) {
   img.classList.add("img-thumbnail");
   img.classList.add("usersImg");
   img.classList.add("rounded-circle");
-  ContainerForEmailNameDate.classList.add("d-flex")
-  ContainerForEmailNameDate.classList.add("flex-column")
-  ContainerForEmailNameDate.classList.add("m-2")
-  ContainerForEmailNameDate.classList.add("col-12")
-  ContainerForEmailNameDate.classList.add("col-sm-6")
+  ContainerForEmailNameDate.classList.add("d-flex");
+  ContainerForEmailNameDate.classList.add("flex-column");
+  ContainerForEmailNameDate.classList.add("m-2");
+  ContainerForEmailNameDate.classList.add("col-12");
+  ContainerForEmailNameDate.classList.add("col-sm-6");
   ContainerForEmailNameDate.classList.add("align-items-center");
-  ContainerForEmailNameDate.classList.add("align-items-sm-start")
-  name.classList.add("my-0")
-  h3.classList.add("my-1")
-  email.classList.add("m-0")
-  email.classList.add("mw-100")
-  name.classList.add("mw-100")
-  h3.classList.add("mw-100")
+  ContainerForEmailNameDate.classList.add("align-items-sm-start");
+  name.classList.add("my-0");
+  h3.classList.add("my-1");
+  email.classList.add("m-0");
+  email.classList.add("mw-100");
+  name.classList.add("mw-100");
+  h3.classList.add("mw-100");
   h2.innerText = title;
   h3.innerText = formatDates(created);
   p.innerText = body;
-  name.innerText= author.name;
-  email.innerText= author.email;
+  name.innerText = author.name;
+  email.innerText = author.email;
   a.append(div);
   a.href = `../specific/index.html?id=${object.id}`;
   imgAndDate.append(img);
-  imgAndDate.append(ContainerForEmailNameDate)
-  ContainerForEmailNameDate.append(name)
-  ContainerForEmailNameDate.append(email)
+  imgAndDate.append(ContainerForEmailNameDate);
+  ContainerForEmailNameDate.append(name);
+  ContainerForEmailNameDate.append(email);
   ContainerForEmailNameDate.append(h3);
   h2AndP.append(h2);
   h2AndP.append(p);
@@ -298,7 +338,7 @@ function createFeedContent(object, section) {
  * @param {variable} section
  */
 function createOneItem(object, section) {
-  let { title, body, created,author } = object;
+  let { title, body, created, author } = object;
   let divContainer = document.createElement("div");
   let div = document.createElement("div");
   let imgAndDate = document.createElement("div");
@@ -308,8 +348,8 @@ function createOneItem(object, section) {
   let h3 = document.createElement("h3");
   let p = document.createElement("p");
   let img = document.createElement("img");
-  let name= document.createElement("p");
-  let email= document.createElement("p");
+  let name = document.createElement("p");
+  let email = document.createElement("p");
   imgAndDate.classList.add("d-flex");
   imgAndDate.classList.add("flex-wrap");
   imgAndDate.classList.add("align-items-center");
@@ -321,28 +361,28 @@ function createOneItem(object, section) {
   img.classList.add("img-thumbnail");
   img.classList.add("usersImg");
   img.classList.add("rounded-circle");
-  ContainerForEmailNameDate.classList.add("d-flex")
-  ContainerForEmailNameDate.classList.add("flex-column")
-  ContainerForEmailNameDate.classList.add("m-2")
-  ContainerForEmailNameDate.classList.add("col-12")
-  ContainerForEmailNameDate.classList.add("col-sm-6")
+  ContainerForEmailNameDate.classList.add("d-flex");
+  ContainerForEmailNameDate.classList.add("flex-column");
+  ContainerForEmailNameDate.classList.add("m-2");
+  ContainerForEmailNameDate.classList.add("col-12");
+  ContainerForEmailNameDate.classList.add("col-sm-6");
   ContainerForEmailNameDate.classList.add("align-items-center");
-  ContainerForEmailNameDate.classList.add("align-items-sm-start")
-  name.classList.add("my-0")
-  h3.classList.add("my-1")
-  email.classList.add("m-0")
-  email.classList.add("mw-100")
-  name.classList.add("mw-100")
-  h3.classList.add("mw-100")
+  ContainerForEmailNameDate.classList.add("align-items-sm-start");
+  name.classList.add("my-0");
+  h3.classList.add("my-1");
+  email.classList.add("m-0");
+  email.classList.add("mw-100");
+  name.classList.add("mw-100");
+  h3.classList.add("mw-100");
   h2.innerText = title;
   h3.innerText = formatDates(created);
   p.innerText = body;
-  name.innerText= author.name;
-  email.innerText= author.email;
+  name.innerText = author.name;
+  email.innerText = author.email;
   imgAndDate.append(img);
-  imgAndDate.append(ContainerForEmailNameDate)
-  ContainerForEmailNameDate.append(name)
-  ContainerForEmailNameDate.append(email)
+  imgAndDate.append(ContainerForEmailNameDate);
+  ContainerForEmailNameDate.append(name);
+  ContainerForEmailNameDate.append(email);
   ContainerForEmailNameDate.append(h3);
   h2AndP.append(h2);
   h2AndP.append(p);
@@ -412,6 +452,7 @@ function createUserPost(object, section) {
 }
 /**
  * function that filter thru an array and makes a new array based on what is search on
+ * this search function looks in both title and body text of posts, so a user can search for both title and body text.
  * @param {array} array
  * @param {variable} searchbar html input
  * @param {variable} section  html elementent
@@ -419,12 +460,23 @@ function createUserPost(object, section) {
 function search(array, searchbar, section) {
   let searchValue = searchbar.value.toLowerCase().trim();
   let searchResult = array.filter((search) => {
-    if (
-      search.title.toLowerCase().includes(searchValue)) {
+    console.log(search.length);
+    let { body, title } = search;
+    if (title.toLowerCase().includes(searchValue)) {
       return true;
+    } else if (body != null) {
+      if (body.toLowerCase().includes(searchValue)) {
+        return true;
+      }
     }
   });
+  console.log(searchResult);
   if (searchResult.length >= 1) {
+    let length= searchResult.length;
+    let numberResults= document.createElement("p");
+    numberResults.innerText= `${length} results on your search: ${searchValue}`;
+    numberResults.classList.add("text-center")
+    section.append(numberResults);
     searchResult.forEach((object) => {
       createFeedContent(object, section);
     });

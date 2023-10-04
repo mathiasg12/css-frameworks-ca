@@ -1,7 +1,8 @@
-import { getPosts, createFeedContent, search,createPost,sendPost,} from "./functions.mjs";
+import { getPosts, createFeedContent, search,createPost,sendPost,getAllPostsInTheApi} from "./functions.mjs";
 import { POSTS_URL,authorTrue} from "./variables.mjs";
 const feedSection = document.getElementById("feed");
 const searchbar = document.getElementById("search");
+const searchSymbol = document.getElementById("searchSymbol");
 const filter= document.getElementById("filter")
 const title = document.getElementById("titlePost");
 const body= document.getElementById("post")
@@ -19,20 +20,43 @@ async function displayPosts(url) {
   arrayOfPosts.forEach((object) => {
     createFeedContent(object, feedSection);
   });
-  searchbar.addEventListener("keyup", () => {
-    feedSection.innerHTML = " ";
-    if (searchbar.value.trim().length >= 1) {
-      search(arrayOfPosts, searchbar, feedSection);
-    } else {
-      location.reload();
-    }
-  });
 }
-displayPosts(POSTS_URL+authorTrue);
+displayPosts(POSTS_URL+`${authorTrue}&limit=30`);
+searchbar.addEventListener("keypress", (press) => {
+  if (press.key === "Enter") {
+    if(press.repeat){
+      press.stopPropagation()
+    }
+    else{
+    searchSymbol.click();
+  }
+  }
+});
+searchSymbol.addEventListener("click", async() => {
+  searchSymbol.classList.add("pe-none")
+  searchbar.disabled= true;
+  loader.classList.remove("d-none")
+  feedSection.innerHTML = " ";
+    let allPosts= await getAllPostsInTheApi(POSTS_URL);
+  if (searchbar.value.trim().length >= 1) {
+    search(allPosts, searchbar, feedSection);
+    loader.classList.add("d-none")
+    searchbar.disabled= false;
+  } else {
+    location.reload();
+  }
+});
+searchbar.addEventListener("change",()=>{
+  searchSymbol.classList.remove("pe-none")
+})
 postBTN.addEventListener("click",(clickEvent)=>{
   clickEvent.preventDefault();
 if(body.value.length >= 1 && title.value.length >= 1){
   sendPost(POSTS_URL,createPost(title.value.trim(), body.value.trim()));
+}
+else{
+  body.placeholder="A post needs to contain atleast one character"
+  title.placeholder="Please write a Title"
 }
 });
 filterBtn.addEventListener("click",()=>{
