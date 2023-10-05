@@ -17,6 +17,7 @@ export {
   passwordsAreEquel,
   formatDates,
   getAllPostsInTheApi,
+  crateContentFromSearch,
 };
 /**
  * Register a user to the api
@@ -245,7 +246,7 @@ function createUser(name, email, password) {
  * function that creates a object
  * @param {string} title
  * @param {string} body
- * @returns
+ * @returns object
  */
 function createPost(title, body) {
   return {
@@ -457,7 +458,7 @@ function createUserPost(object, section) {
  * @param {variable} searchbar html input
  * @param {variable} section  html elementent
  */
-function search(array, searchbar, section) {
+function search(array, searchbar) {
   let searchValue = searchbar.value.toLowerCase().trim();
   let searchResult = array.filter((search) => {
     console.log(search.length);
@@ -471,15 +472,22 @@ function search(array, searchbar, section) {
     }
   });
   console.log(searchResult);
+  return searchResult;
+}
+/**
+ * function that creates content based of an array that comes from a search function
+ * @param {array} searchResult
+ * @param {string variable} section
+ * @param {string or variable} offset
+ * @param {string or variable} perPage
+ */
+function crateContentFromSearch(searchResult, section, offset, perPage) {
   if (searchResult.length >= 1) {
-    let length= searchResult.length;
-    let numberResults= document.createElement("p");
-    numberResults.innerText= `${length} results on your search: ${searchValue}`;
-    numberResults.classList.add("text-center")
-    section.append(numberResults);
-    searchResult.forEach((object) => {
-      createFeedContent(object, section);
-    });
+    for (let i = offset; i < perPage; i++) {
+      if (searchResult[i] != undefined) {
+        createFeedContent(searchResult[i], section);
+      }
+    }
   } else {
     let div = document.createElement("div");
     let h1 = document.createElement("h1");
@@ -489,6 +497,7 @@ function search(array, searchbar, section) {
     section.append(div);
   }
 }
+
 /**
  * function that creates an edit form.
  * @param {variable} section
