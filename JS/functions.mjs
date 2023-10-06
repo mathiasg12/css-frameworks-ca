@@ -40,9 +40,7 @@ async function registerUser(url, urlLogin, user, email, password, h3) {
       body: JSON.stringify(user),
     };
     let response = await fetch(url, makeUser);
-    console.log(response);
     let responseJson = await response.json();
-    console.log(responseJson);
     if (response.status !== 400) {
       h3.innerText = "Sign up";
       h3.classList.remove("text-danger");
@@ -75,7 +73,6 @@ async function loginUser(url, email, password, h3) {
     };
     let response = await fetch(url, login);
     let responseJson = await response.json();
-    console.log(responseJson);
     if (response.status !== 401) {
       if (responseJson.accessToken != undefined) {
         if (h3 != undefined) {
@@ -153,7 +150,6 @@ async function getAllPostsInTheApi(url) {
         let flatArrayWithALlPosts = arrayWithAllPosts.flatMap((object) => {
           return object;
         });
-        console.log(flatArrayWithALlPosts);
         return flatArrayWithALlPosts;
       }
     }
@@ -461,7 +457,6 @@ function createUserPost(object, section) {
 function search(array, searchbar) {
   let searchValue = searchbar.value.toLowerCase().trim();
   let searchResult = array.filter((search) => {
-    console.log(search.length);
     let { body, title } = search;
     if (title.toLowerCase().includes(searchValue)) {
       return true;
@@ -471,7 +466,6 @@ function search(array, searchbar) {
       }
     }
   });
-  console.log(searchResult);
   return searchResult;
 }
 /**

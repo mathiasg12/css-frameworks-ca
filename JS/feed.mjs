@@ -74,8 +74,6 @@ moreBtn.addEventListener("click", () => {
   if (searched == true) {
     offset = offset + parseInt(getFilterValue());
     perPage = perPage + parseInt(getFilterValue());
-    console.log("offset:" + offset);
-    console.log("perpage:" + perPage);
     if (filter.value === "newest") {
       crateContentFromSearch(result, feedSection, offset, perPage);
     } else {

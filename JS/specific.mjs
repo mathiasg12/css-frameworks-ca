@@ -5,7 +5,6 @@ const postSection = document.getElementById("postSection");
 const idParam= new URLSearchParams(querry);
 const idParmeter= idParam.get("id");
 const loader= document.getElementById("loading");
-console.log(idParam)
 const newUrl= POSTS_URL+"/"+idParmeter+authorTrue;
 async function displaySinglePost(){
     loader.classList.add("d-none")
