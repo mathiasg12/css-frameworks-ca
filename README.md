@@ -24,11 +24,11 @@ The profile page is where users can edit and delete their own posts and uses PUT
 * Filter(how many results per page)
 * All forms use JS validation 
 ## Built with
-*JS
-*CSS
-*HTML
-*SCSS
-*Bootstrap
+* JS
+* CSS
+* HTML
+* SCSS
+* Bootstrap
 ### Running
 1. download this repository
 2. go to package.json
@@ -38,5 +38,7 @@ The profile page is where users can edit and delete their own posts and uses PUT
     "start": "live-server"
   },`
 4. press debug then start
-# Contact
+## Other info
+[link to my trello board](https://trello.com/b/4qWMbX9G/js2-ca)
+## Contact
 My email address: mathiasgausl@gmail.com
