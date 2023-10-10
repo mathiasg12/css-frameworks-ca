@@ -8,6 +8,6 @@ const loader= document.getElementById("loading");
 const newUrl= POSTS_URL+"/"+idParmeter+authorTrue;
 async function displaySinglePost(){
     loader.classList.add("d-none")
-    createOneItem(await getPosts(newUrl),postSection)
+    createOneItem(await getPosts(newUrl,postSection),postSection)
 }
 displaySinglePost();

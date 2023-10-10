@@ -13,7 +13,7 @@ const h2 = document.querySelector("#name");
 const loader= document.getElementById("loading");
 h2.innerText = userName;
 async function displayUsersPosts(url) {
-  let arrayOfPosts = await getPosts(url);
+  let arrayOfPosts = await getPosts(url,sectionForposts);
   loader.classList.add("d-none")
   arrayOfPosts.forEach((object) => {
     createUserPost(object, sectionForposts);
@@ -23,7 +23,7 @@ displayUsersPosts(USER_POSTS_URL);
 sectionForposts.addEventListener("click", (click) => {
   if (click.target.classList.contains("delete")) {
     let id = click.target.dataset.deleteid;
-    deletePost(POSTS_URL + `/${id}`);
+    deletePost(POSTS_URL + `/${id}`, sectionForposts);
   }
 });
 sectionForposts.addEventListener("click", (click) => {
@@ -70,7 +70,7 @@ sectionForposts.addEventListener("click", (click) => {
       );
       title.classList.remove("border-danger");
     } else {
-      updatePost(POSTS_URL + `/${id}`, createPost(title.value, bodyText.value));
+      updatePost(POSTS_URL + `/${id}`, createPost(title.value, bodyText.value),sectionForposts);
       title.classList.remove("border-danger");
       bodyText.classList.remove("border-danger");
     }

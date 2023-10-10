@@ -9,6 +9,7 @@ import {
 } from "./functions.mjs";
 import { POSTS_URL, authorTrue } from "./variables.mjs";
 const feedSection = document.getElementById("feed");
+const postSection = document.getElementById("postSection");
 const searchbar = document.getElementById("search");
 const searchSymbol = document.getElementById("searchSymbol");
 const filter = document.getElementById("filter");
@@ -28,7 +29,7 @@ let perPage = 30;
 let result = [];
 let reversedResult = [];
 async function displayPosts(url) {
-  let arrayOfPosts = await getPosts(url);
+  let arrayOfPosts = await getPosts(url,feedSection);
   loader.classList.add("d-none");
   arrayOfPosts.forEach((object) => {
     createFeedContent(object, feedSection);
@@ -51,7 +52,7 @@ searchSymbol.addEventListener("click", async () => {
   searchbar.disabled = true;
   loader.classList.remove("d-none");
   feedSection.innerHTML = " ";
-  let allPosts = await getAllPostsInTheApi(POSTS_URL);
+  let allPosts = await getAllPostsInTheApi(POSTS_URL,feedSection);
   if (searchbar.value.trim().length >= 1) {
     result = search(allPosts, searchbar);
     reversedResult = result.toReversed();
@@ -111,7 +112,7 @@ searchbar.addEventListener("change", () => {
 postBTN.addEventListener("click", (clickEvent) => {
   clickEvent.preventDefault();
   if (body.value.length >= 1 && title.value.length >= 1) {
-    sendPost(POSTS_URL, createPost(title.value.trim(), body.value.trim()));
+    sendPost(POSTS_URL, createPost(title.value.trim(), body.value.trim()),postSection);
   } else {
     body.placeholder = "A post needs to contain atleast one character";
     title.placeholder = "Please write a Title";

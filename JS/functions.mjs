@@ -51,6 +51,8 @@ async function registerUser(url, urlLogin, user, email, password, h3) {
     }
   } catch (error) {
     console.log(error);
+    h3.innerText = error +":"+" "+ "please try again later";
+    h3.classList.add("text-danger");
   }
 }
 /**
@@ -93,6 +95,8 @@ async function loginUser(url, email, password, h3) {
     }
   } catch (error) {
     console.log(error);
+    h3.innerText = error +":"+" "+ "please try again later";
+    h3.classList.add("text-danger");
   }
 }
 /**
@@ -101,7 +105,7 @@ async function loginUser(url, email, password, h3) {
  * @example
  * getPosts(example/api/posts)
  */
-async function getPosts(url) {
+async function getPosts(url,section) {
   try {
     let accessToken = localStorage.getItem("Token");
     let posts = {
@@ -116,6 +120,12 @@ async function getPosts(url) {
     return responseJson;
   } catch (error) {
     console.log(error);
+    let h2= document.createElement("h2")
+    h2.innerText = error +":"+" "+ "please try again later";
+    h2.classList.add("text-danger");
+    h2.classList.add("m-5")
+    h2.classList.add("text-center")
+    section.append(h2)
   }
 }
 /**
@@ -124,7 +134,7 @@ async function getPosts(url) {
  * @param {string} url
  * @returns array
  */
-async function getAllPostsInTheApi(url) {
+async function getAllPostsInTheApi(url,section) {
   try {
     let accessToken = localStorage.getItem("Token");
     let posts = {
@@ -155,6 +165,12 @@ async function getAllPostsInTheApi(url) {
     }
   } catch (error) {
     console.log(error);
+    let h2= document.createElement("h2")
+    h2.innerText = error +":"+" "+ "please try again later";
+    h2.classList.add("text-danger");
+    h2.classList.add("m-5")
+    h2.classList.add("text-center")
+    section.append(h2)
   }
 }
 /**
@@ -162,7 +178,7 @@ async function getAllPostsInTheApi(url) {
  * @param {string} url
  * @param {object} object
  */
-async function sendPost(url, object) {
+async function sendPost(url, object,section) {
   try {
     let accessToken = localStorage.getItem("Token");
     let sendTo = {
@@ -178,13 +194,19 @@ async function sendPost(url, object) {
     return response;
   } catch (error) {
     console.log(error);
+    let h2= document.createElement("h2")
+    h2.innerText = error +":"+" "+ "please try again later";
+    h2.classList.add("text-danger");
+    h2.classList.add("m-5")
+    h2.classList.add("text-center")
+    section.prepend(h2)
   }
 }
 /**
  * function that lets users delete a post
  * @param {string} url
  */
-async function deletePost(url) {
+async function deletePost(url,section) {
   try {
     let accessToken = localStorage.getItem("Token");
     let deleteThis = {
@@ -198,6 +220,12 @@ async function deletePost(url) {
     location.reload();
   } catch (error) {
     console.log(error);
+    let h2= document.createElement("h2")
+    h2.innerText = error +":"+" "+ "please try again later";
+    h2.classList.add("text-danger");
+    h2.classList.add("m-5")
+    h2.classList.add("text-center")
+    section.prepend(h2)
   }
 }
 /**
@@ -205,7 +233,7 @@ async function deletePost(url) {
  * @param {string} url
  * @param {object} object
  */
-async function updatePost(url, object) {
+async function updatePost(url, object,section) {
   try {
     let accessToken = localStorage.getItem("Token");
     let updateThis = {
@@ -220,6 +248,12 @@ async function updatePost(url, object) {
     location.reload();
   } catch (error) {
     console.log(error);
+    let h2= document.createElement("h2")
+    h2.innerText = error +":"+" "+ "please try again later";
+    h2.classList.add("text-danger");
+    h2.classList.add("m-5")
+    h2.classList.add("text-center")
+    section.prepend(h2)
   }
 }
 /**
