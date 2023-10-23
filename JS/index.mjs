@@ -1,12 +1,11 @@
 import { REGISTER_URL, LOGIN_URL } from "./variables.mjs";
+import { createUser } from "././functions.mjs";
 import {
-  registerUser,
-  createUser,
-  loginUser,
   emailValidation,
   validateLength,
   passwordsAreEquel,
-} from "././functions.mjs";
+} from "././validation-functions.mjs";
+import { registerUser, loginUser } from "././loginAndRegister.mjs";
 const signUpH3 = document.getElementById("signUpH3");
 const loginH3 = document.getElementById("loginH3");
 const registerEmail = document.getElementById("emailSignup");
@@ -15,15 +14,17 @@ const registerName = document.getElementById("name");
 const registerpassword = document.getElementById("passwordSignup");
 const registerpasswordLabel = document.getElementById("passwordSignupLabel");
 const registerRepeatPassword = document.getElementById("RepasswordSignup");
-const registerRepeatPasswordLabel = document.getElementById("RepasswordSignupLabel");
+const registerRepeatPasswordLabel = document.getElementById(
+  "RepasswordSignupLabel"
+);
 const registerBtn = document.getElementById("signUp");
 const loginEmail = document.getElementById("email");
 const loginPassword = document.getElementById("password");
 const loginEmailLabel = document.getElementById("loginEmailLabel");
 const loginPasswordLabel = document.getElementById("loginPasswordLabel");
 const loginBtn = document.getElementById("login");
-const signUpForm= document.getElementById("formSignup");
-const loginForm= document.getElementById("form");
+const signUpForm = document.getElementById("formSignup");
+const loginForm = document.getElementById("form");
 registerBtn.addEventListener("click", (click) => {
   click.preventDefault();
   emailValidation(registerEmail, registerEmailLabel);
@@ -94,11 +95,11 @@ loginBtn.addEventListener("click", (click) => {
     });
   }
 });
-signUpForm.addEventListener("keyup",()=>{
-    signUpH3.innerText="Sign up"
-    signUpH3.classList.remove("text-danger")
-})
-loginForm.addEventListener("keyup",()=>{
-    loginH3.innerText="Login"
-    loginH3.classList.remove("text-danger")
-})
+signUpForm.addEventListener("keyup", () => {
+  signUpH3.innerText = "Sign up";
+  signUpH3.classList.remove("text-danger");
+});
+loginForm.addEventListener("keyup", () => {
+  loginH3.innerText = "Login";
+  loginH3.classList.remove("text-danger");
+});

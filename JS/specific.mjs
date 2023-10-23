@@ -1,5 +1,6 @@
 import { POSTS_URL,authorTrue} from "././variables.mjs";
-import { createOneItem, getPosts} from "././functions.mjs";
+import { getPosts} from "././functions.mjs";
+import { createOneItem} from "./displayOnePost.mjs"
 const querry= document.location.search;
 const postSection = document.getElementById("postSection");
 const idParam= new URLSearchParams(querry);

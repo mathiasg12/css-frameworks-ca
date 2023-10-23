@@ -1,20 +1,21 @@
 import { USER_POSTS_URL, userName, POSTS_URL } from "././variables.mjs";
 import {
   getPosts,
-  createUserPost,
-  deletePost,
   createPost,
-  updatePost,
-  createEditForm,
 } from "././functions.mjs";
-const logOut= document.getElementById("logOut");
+import{
+  createUserPost
+} from"./displayUserPosts.mjs";
+import{  createEditForm} from "././createEditForm.mjs";
+import { deletePost, updatePost } from "././deleteAndUdate.mjs";
+const logOut = document.getElementById("logOut");
 const sectionForposts = document.getElementById("postSection");
 const h2 = document.querySelector("#name");
-const loader= document.getElementById("loading");
+const loader = document.getElementById("loading");
 h2.innerText = userName;
 async function displayUsersPosts(url) {
-  let arrayOfPosts = await getPosts(url,sectionForposts);
-  loader.classList.add("d-none")
+  let arrayOfPosts = await getPosts(url, sectionForposts);
+  loader.classList.add("d-none");
   arrayOfPosts.forEach((object) => {
     createUserPost(object, sectionForposts);
   });
@@ -70,14 +71,17 @@ sectionForposts.addEventListener("click", (click) => {
       );
       title.classList.remove("border-danger");
     } else {
-      updatePost(POSTS_URL + `/${id}`, createPost(title.value, bodyText.value),sectionForposts);
+      updatePost(
+        POSTS_URL + `/${id}`,
+        createPost(title.value, bodyText.value),
+        sectionForposts
+      );
       title.classList.remove("border-danger");
       bodyText.classList.remove("border-danger");
     }
   }
 });
-logOut.addEventListener("click",()=>{
+logOut.addEventListener("click", () => {
   localStorage.clear();
   location.replace("../index.html");
-  })
-  
+});

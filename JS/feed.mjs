@@ -1,12 +1,11 @@
 import {
   getPosts,
-  createFeedContent,
-  search,
-  crateContentFromSearch,
   createPost,
-  sendPost,
+  createFeedContent,
   getAllPostsInTheApi,
 } from "./functions.mjs";
+import { search, crateContentFromSearch } from "./search.mjs";
+import { sendPost } from "./post.mjs";
 import { POSTS_URL, authorTrue } from "./variables.mjs";
 const feedSection = document.getElementById("feed");
 const postSection = document.getElementById("postSection");
@@ -29,7 +28,7 @@ let perPage = 30;
 let result = [];
 let reversedResult = [];
 async function displayPosts(url) {
-  let arrayOfPosts = await getPosts(url,feedSection);
+  let arrayOfPosts = await getPosts(url, feedSection);
   loader.classList.add("d-none");
   arrayOfPosts.forEach((object) => {
     createFeedContent(object, feedSection);
@@ -52,7 +51,7 @@ searchSymbol.addEventListener("click", async () => {
   searchbar.disabled = true;
   loader.classList.remove("d-none");
   feedSection.innerHTML = " ";
-  let allPosts = await getAllPostsInTheApi(POSTS_URL,feedSection);
+  let allPosts = await getAllPostsInTheApi(POSTS_URL, feedSection);
   if (searchbar.value.trim().length >= 1) {
     result = search(allPosts, searchbar);
     reversedResult = result.toReversed();
@@ -63,7 +62,7 @@ searchSymbol.addEventListener("click", async () => {
     feedSection.append(numberResults);
     filter.value = "newest";
     filterPerPage[0].checked = true;
-    crateContentFromSearch(result, feedSection, offset, perPage);
+    crateContentFromSearch(result, feedSection, offset, perPage,createFeedContent);
     loader.classList.add("d-none");
     searchbar.disabled = false;
     searched = true;
@@ -112,7 +111,11 @@ searchbar.addEventListener("change", () => {
 postBTN.addEventListener("click", (clickEvent) => {
   clickEvent.preventDefault();
   if (body.value.length >= 1 && title.value.length >= 1) {
-    sendPost(POSTS_URL, createPost(title.value.trim(), body.value.trim()),postSection);
+    sendPost(
+      POSTS_URL,
+      createPost(title.value.trim(), body.value.trim()),
+      postSection
+    );
   } else {
     body.placeholder = "A post needs to contain atleast one character";
     title.placeholder = "Please write a Title";
