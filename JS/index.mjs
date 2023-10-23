@@ -25,6 +25,11 @@ const loginPasswordLabel = document.getElementById("loginPasswordLabel");
 const loginBtn = document.getElementById("login");
 const signUpForm = document.getElementById("formSignup");
 const loginForm = document.getElementById("form");
+/**
+ * eventlistener that runs if a user clicks the register button,
+ * the the function will use validation functions to check the input and deliver an error message if the input is wrong,
+ * if the input is in the correct format the function will run a function that register the user
+ */
 registerBtn.addEventListener("click", (click) => {
   click.preventDefault();
   emailValidation(registerEmail, registerEmailLabel);
@@ -72,6 +77,11 @@ registerBtn.addEventListener("click", (click) => {
     });
   }
 });
+/**
+ * eventlistener that runs when the login button is pressed, it will first run the validation functions to check that the input
+ * is the correct format the it will send a request to the api, if the login information is correct it will store the access token in local storage,
+ * and direct the user to the feed page
+ */
 loginBtn.addEventListener("click", (click) => {
   click.preventDefault();
   emailValidation(loginEmail, loginEmailLabel);
@@ -95,10 +105,16 @@ loginBtn.addEventListener("click", (click) => {
     });
   }
 });
+/**
+ * simple function that corrects the sign up header when something in the form changes
+ */
 signUpForm.addEventListener("keyup", () => {
   signUpH3.innerText = "Sign up";
   signUpH3.classList.remove("text-danger");
 });
+/**
+ * simple function that corrects the login header when something in the form changes
+ */
 loginForm.addEventListener("keyup", () => {
   loginH3.innerText = "Login";
   loginH3.classList.remove("text-danger");

@@ -3,8 +3,8 @@ export{search, crateContentFromSearch};
  * function that filter thru an array and makes a new array based on what is search on
  * this search function looks in both title and body text of posts, so a user can search for both title and body text.
  * @param {array} array
- * @param {variable} searchbar html input
- * @param {variable} section  html elementent
+ * @param {variable} searchbar, html input
+ * @param {variable} section,  html elementent
  */
 function search(array, searchbar) {
     let searchValue = searchbar.value.toLowerCase().trim();
