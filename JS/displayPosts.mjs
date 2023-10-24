@@ -1,7 +1,7 @@
 export { displayPosts };
 import { getPosts } from "./getPosts.mjs";
 /**
- * asunc function that stores posts from the getpost function, then loops thru the array and calls a function to display the data returned on a section, the removes the loader symbol
+ * async function that stores posts from the getpost function, then loops thru the array and calls a function to display the data returned on a section, the removes the loader symbol
  * @param {var} url
  * @param {function} createHtml
  * @param {var} section

@@ -8,7 +8,7 @@ const idParmeter= idParam.get("id");
 const loader= document.getElementById("loading");
 const newUrl= POSTS_URL+"/"+idParmeter+authorTrue;
 /**
- * async function that uses the createOneItem function which uses the getpost function as parameter,
+ * async function that uses the createOneItem function which calls the getpost function as parameter,
  * this will render one post that match the id parameter used in the url. 
  */
 async function displaySinglePost(){

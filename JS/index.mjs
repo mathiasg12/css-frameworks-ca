@@ -27,8 +27,8 @@ const signUpForm = document.getElementById("formSignup");
 const loginForm = document.getElementById("form");
 /**
  * eventlistener that runs if a user clicks the register button,
- * the the function will use validation functions to check the input and deliver an error message if the input is wrong,
- * if the input is in the correct format the function will run a function that register the user
+ * the the function will call validation functions to check the input and deliver an error message if the input is wrong,
+ * if the input is in the correct format the function will call a function that register the user to the api
  */
 registerBtn.addEventListener("click", (click) => {
   click.preventDefault();

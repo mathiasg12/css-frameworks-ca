@@ -1,7 +1,7 @@
 export {createUserPost};
 import {formatDates}from "./functions.mjs"
 /**
- * function that creates HTML for users own posts, this allows them to update or delete them.
+ * function that creates HTML for users own posts, this adds an update and delete button.
  * @param {object} object
  * @param {variable} section
  */

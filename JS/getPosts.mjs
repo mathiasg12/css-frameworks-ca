@@ -32,7 +32,7 @@ async function getPosts(url, section) {
    * GET request to the api that gets posts using the accesstoken stored in local storage,
    * and stores all posts in an array
    * @param {string} url
-   * @returns array
+   * @returns {array}
    */
   async function getAllPostsInTheApi(url, section) {
     try {

@@ -45,7 +45,7 @@ searchbar.addEventListener("keypress", (press) => {
 });
 /**
  * eventlister that runs if the search symbol is clicked, it then clears the feed seaction and loops thru the whole api,
- * then it will store the search input and use the search function to match search value with posts, then the results will be displayed in the feed section.
+ * then it will store the search input and use the search function to match search input with posts, then the results will be displayed in the feed section.
  */
 searchSymbol.addEventListener("click", async () => {
   offset = 0;
@@ -81,7 +81,7 @@ searchSymbol.addEventListener("click", async () => {
 });
 /**
  * eventlistener that runs if the more button is pressed, this function is for searched items and will not run if searched==false, it has a local page system and
- * wil use a fucntion called createContentFromSearch to render the next posts if there are any.
+ * wil use a function called createContentFromSearch to render the next posts if there are any.
  */
 moreBtn.addEventListener("click", () => {
   if (searched == true) {
