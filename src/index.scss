@@ -1,21 +1,65 @@
-$secondary: #ED8042;
-$primary: #A2FFFD;
+$secondary: #ed8042;
+$primary: #a2fffd;
 $themes: (
-    "navlinks": #e9a174,
-    "btn":#37ED83,
-    "purpleH":rgb(155, 43, 155),
-    "followers": #FF9900 ,
-    "following": #CC00FF,
+  "navlinks": #e9a174,
+  "btn": #37ed83,
+  "purpleH": rgb(155, 43, 155),
+  "followers": #ff9900,
+  "following": #cc00ff,
 );
-#form{
-    max-width: 700px;
+$h3-font-size: 1.25rem;
+$font-size-base: 1.2rem;
+#form,
+#formSignup {
+  max-width: 600px;
 }
-.postC{
-    max-width: 240px
+#form input,
+#formSignup input {
+  width: 180px;
 }
+.postC {
+  max-width: 240px;
+}
+.cards {
+  max-width: 600px !important;
+}
+main {
+  min-height: 100vh;
+}
+.formEl {
+  width: 130px;
+}
+btnCard {
+  min-width: 85px;
+}
+.mainLanding{
+    background-image: url(/img/bg.jpg);
+    background-size: contain
+}
+#logOut{
+  cursor: pointer;
+}
+.usersImg{
+  max-width: 100px !important;
+}
+#loading {
+  width: 100px;
+  height: 100px;
+  border: 10px solid;
+  border-color: transparent rgb(155, 43, 155) transparent rgb(155, 43, 155);
+  border-radius: 50%;
+  animation: spin 1s ease infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @import "../node_modules/bootstrap/scss/_functions";
 @import "../node_modules/bootstrap/scss/_variables";
 $theme-colors: map-merge($theme-colors, $themes);
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
-
-

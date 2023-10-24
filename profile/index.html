@@ -18,7 +18,7 @@
       <nav
         class="navbar pb-0 d-flex flex-column flex-md-row justify-content-center align-items-md-end"
       >
-        <a href="/index.html" class="navbar-brand m-2 fs-1">MePlace</a>
+      <h1 class="navbar-brand m-2 fs-1">MePlace</h1>
         <ul
           class="nav nav-tabs d-flex flex-row justify-content-around border-0"
         >
@@ -48,7 +48,7 @@
             class="img-fluid rounded-circle col col-8 col-md-6 col-lg-4 col-xxl-2"
           />
         </div>
-        <h1 class="row  justify-content-center p-2">User 55523</h1>
+        <h1 id="name" class="row  justify-content-center p-2"></h1>
         <div class="row justify-content-center">
           <span class="col-5 col-md-4 col-lg-3 bg-followers bg-opacity-50 p-2 text-center">Followers: 50 000</span>
           <span class="col-5 col-md-4 col-lg-3 bg-following bg-opacity-50 p-2 text-center">Following: 1450</span>
@@ -64,54 +64,24 @@
           totam quisquam nisi asperiores. Deleniti temporibus quod dolorum sed
           ex dolor!
         </p>
-      <button class="bg-following bg-opacity-50 col-12">Follow</button>  
     </div>
   </div>
   </section>
-  <section class="container py-5">
-      <section class="row justify-content-center">
-        <h2 class="text-center">Posts</h2>
-        <div class="col-11 col-md-5 bg-opacity-60 bg-white p-2 shadow m-2 rounded">
-          <div class="row m-2 align-items-center">
-            <img src="/img/60111.jpg" class="img-thumbnail rounded-circle col col-4" alt="profile">
-            <h3 class="col col-6">User 55523</h3>
-          </div>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta
-            dolore consectetur officia. Recusandae vel dolorum ex sed quam.
-            Alias totam quisquam nisi asperiores. Deleniti temporibus quod
-            dolorum sed ex dolor!
-          </p>
-        </div>
-        <div class="col-11 col-md-5 bg-opacity-60 bg-white p-2 shadow m-2 rounded">
-          <div class="row m-2 align-items-center">
-            <img src="/img/60111.jpg" class="img-thumbnail rounded-circle col col-4" alt="profile">
-            <h3 class="col col-6">User 55523</h3>
-          </div>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta
-            dolore consectetur officia. Recusandae vel dolorum ex sed quam.
-            Alias totam quisquam nisi asperiores. Deleniti temporibus quod
-            dolorum sed ex dolor!
-          </p>
-        </div>
-        <div class="col-11 col-md-5 bg-opacity-60 bg-white p-2 shadow m-2 rounded">
-          <div class="row m-2 align-items-center">
-            <img src="/img/60111.jpg" class="img-thumbnail rounded-circle col col-4" alt="profile">
-            <h3 class="col col-6">User 55523</h3>
-          </div>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta
-            dolore consectetur officia. Recusandae vel dolorum ex sed quam.
-            Alias totam quisquam nisi asperiores. Deleniti temporibus quod
-            dolorum sed ex dolor!
-          </p>
-        </div>
+  <section class="container pb-5">
+    <div class="d-flex justify-content-center align-items-center w-100 my-4"">
+      <div id="loading" class="my-4 d-flex justify-content-center align-items-center"><p>Loading</p>
+      </div>
+    </div>
+      <section class="row justify-content-center" id="postSection">
       </section>
+    </section>
+    <section class="container py-4">
+      <div class="d-flex justify-content-center "><p id="logOut" class="fs-5 text-danger fw-bold bg-white p-2 bg-opacity-75 rounded">Log out</p></div>
     </section>
     </main>
     <footer class="bg-secondary d-flex m-0">
       <div class="p-3">&copy Mathias Gauslå</div>
+      <script src="/JS/user.mjs" type="module"></script>
     </footer>
   </body>
 </html>
